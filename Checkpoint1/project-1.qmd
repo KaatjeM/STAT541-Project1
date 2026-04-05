@@ -3,6 +3,7 @@ title: "Project 1 - Checkpoint 1"
 author: "Kaatje Matthews-vanKoetsveld"
 format: html
 code-fold: show
+embed-resources: true
 editor: source
 ---
 
