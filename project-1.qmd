@@ -1,6 +1,0 @@
----
-title: "Project 1"
-author: "Kaatje Matthews-vanKoetsveld"
-format: html
-editor: visual
----
