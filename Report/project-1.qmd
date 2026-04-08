@@ -7,13 +7,15 @@ embed-resources: true
 editor: source
 ---
 
+# Checkpoint 1
+
 ```{r}
 #| output: false
 library(tidyverse)
 democracy_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv')
 ```
 
-# Data Context
+## Data Context
 
 The dataset is read in from Tidy Tuesday on GitHub and was curated by Jon Harmon. This dataset is an updated version of the [pacl](https://xmarquez.github.io/democracyData/reference/pacl.html#source) dataset, described in J. A. Cheibub, J. Gandhi, and J. R. Vreeland. "Democracy and Dictatorship Revisited". In: Public Choice 143.1-2 (2009), pp. 67-101. DOI: 10.1007/s11127-009-9491-2.
 
@@ -21,7 +23,7 @@ The data describes the regime types of countries around the world between the ye
 
 These data is important to measure and evaluate the differences across regimes, and evaluate changes in democracies on a global scale.
 
-# Data Cleaning
+## Data Cleaning
 
 The cleaning script for the data is in the code chunk below. The orginal pacl data is being cleaned and updated in this script.
 
@@ -127,13 +129,13 @@ The next section of cleaning mutates the variables. The "?" value in `election_m
 
 Lastly, any of the of the index, year, or members variables along with `parliament_chambers` are converted to integer datatypes. Then, all the `is_` or `has_` variables are converted to logical datatypes.
 
-# Research Questions from Data
+## Research Questions from Data
 
 1.  How has president age changed over time and is there a difference for female presidents vs. male presidents?
 
 2.  How long on average does it take countries that stopped being democratic to return to democracy?
 
-# Research Questions with Supplemental Data
+## Research Questions with Supplemental Data
 
 1.  How does happiness score differ by regime type? Is there a difference in happiness between different types of democratic regimes?
 
@@ -141,10 +143,16 @@ Lastly, any of the of the index, year, or members variables along with `parliame
 
 3.  How does the distribution of populations compare between democratic and non-democratic countries.
 
-# Visualization Sketches
+## Visualization Sketches
 
 1.  For RQ 1 from these Data
 ![](images/S541_1_1.png)
 
 2.  For RQ 3 from supplemental data
 ![](images/S541_1_1_b.png)
+
+# Checkpoint 2
+
+## Unmodified data summaries
+
+## Modified data summaries
