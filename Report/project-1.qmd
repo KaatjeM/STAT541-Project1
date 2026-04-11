@@ -147,11 +147,9 @@ Lastly, any of the of the index, year, or members variables along with `parliame
 
 ## Visualization Sketches
 
-1.  For RQ 1 from these Data
-![](images/S541_1_1.png)
+1.  For RQ 1 from these Data ![](images/S541_1_1.png)
 
-2.  For RQ 3 from supplemental data
-![](images/S541_1_1_b.png)
+2.  For RQ 3 from supplemental data ![](images/S541_1_1_b.png)
 
 # Checkpoint 2
 
@@ -206,6 +204,57 @@ democracy_data |>
   tab_caption(caption = md("Counts of regimes per country, with the percent of regimes that were dictatorships."))
 
 
+```
+
+### Democratic Principals by Regime Categories
+
+*no new columns, requires custom function and no iteration*
+
+```{r}
+summarize_regimes <- function(regimes = c("Civilian dictatorship",
+                                          "Parliamentary democracy",
+                                          "Military dictatorship",
+                                          "Presidential democracy")) {
+  democracy_data |>
+    filter(regime_category %in% regimes) |>
+    group_by(regime_category) |>
+    summarize(
+      n = n(),
+      prop_demo = sum(is_democracy, na.rm = TRUE) / n,
+      prop_suffrage = sum(has_full_suffrage, na.rm = TRUE) / n,
+      prop_multiparty = sum(is_multiparty, na.rm = TRUE) / n,
+      prop_free_fair = sum(has_free_and_fair_election, na.rm = TRUE) / n,
+      prop_alternation = sum(has_alternation, na.rm = TRUE) / n
+    ) |>
+    gt() |>
+    cols_label(
+      regime_category = "Regime",
+      n = "Number of Observations",
+      prop_demo = "Democratic",
+      prop_suffrage = "Full Voting Rights",
+      prop_multiparty = "Multi-Party Elections",
+      prop_free_fair = "Free & Fair Elections",
+      prop_alternation = "Rotating Top Office"
+    ) |>
+    tab_style(
+      cell_text(weight = "bold"),
+      locations = cells_column_labels(everything())
+    ) |>
+    fmt_percent(columns = -c(n, regime_category)) |>
+    tab_caption(
+      caption = md("Percent of observations demonstrating democratic principals, by regime category")
+    ) |>
+    tab_spanner(
+      label = "Democratic Principals Represented (% Observations)",
+      columns = -c(n, regime_category)
+    ) |>
+    data_color(
+      columns = -c(n, regime_category),
+      palette = "Blues"
+    )
+}
+
+summarize_regimes()
 ```
 
 ## Modified data summaries
