@@ -13,6 +13,7 @@ editor: visual
 #| message: false
 
 library(tidyverse)
+library(gt)
 ```
 
 ```{r load in data}
@@ -65,3 +66,91 @@ The cleaning process performed on this data included:
 ![](images/scatterplot.jpg)
 
 # Checkpoint 2
+
+## Count of Regimes and Percent of Dictatorships Per Country
+
+*no new columns, requires custom function and iteration*
+```{r}
+
+count_regimes <- function(country) {
+
+  regimes <- democracy_data |>
+    filter(country_code == country) |>
+    arrange(year) |>
+    mutate(prev_regime = lag(regime_category)) |>
+    filter(year == min(year) | regime_category != prev_regime)
+    
+  nrow(regimes)
+  
+}
+
+count_dictatorships <- function(country) {
+
+  dictatorships <- democracy_data |>
+    filter(country_code == country) |>
+    arrange(year) |>
+    mutate(prev_regime = lag(regime_category)) |>
+    filter(year == min(year) | regime_category != prev_regime, regime_category_index >= 3)
+    
+  nrow(dictatorships)
+  
+}
+
+democracy_data |>
+  distinct(country_code, country_name) |>
+  mutate(n_regimes = map_dbl(country_code, count_regimes),
+         n_dicts = map_dbl(country_code, count_dictatorships),
+         prop_dict = n_dicts/n_regimes) |>
+  select(country_name, n_regimes, prop_dict) |>
+  arrange(desc(n_regimes)) |>
+  gt() |>
+  cols_label(country_name = "Country", 
+             n_regimes = "Number of Regimes",
+             prop_dict = "Proportion of Dictatorships") |>
+  tab_style(cell_text(weight = "bold"),
+            locations = cells_column_labels(everything())) |>
+  fmt_percent(columns = prop_dict) |>
+  data_color(prop_dict,
+             palette = "Blues") |>
+  tab_caption(caption = md("Counts of regimes per country, with the percent of regimes that were dictatorships."))
+
+
+```
+
+## Percent of Independent Countries Over the Years
+
+*new columns, requires custom function and iteration*
+```{r}
+
+is_not_ind <- function(regime_category_index, regime_category) {
+  
+  is.na(regime_category_index) | 
+    regime_category %in% c("Colony", 
+                           "British Overseas Territory")
+  
+}
+
+democracy_data |>
+  mutate(not_independent = map2_lgl(regime_category_index,
+                                    regime_category,
+                                    is_not_ind)) |>
+  group_by(year) |>
+  summarise(
+    ind_count = sum(!not_independent),
+    not_ind_count = sum(not_independent)
+    ) |>
+  mutate(prop_ind = ind_count/(ind_count + not_ind_count)) |>
+  select(year, prop_ind, ind_count, not_ind_count) |>
+  gt() |>
+  cols_label(year = "Year", 
+             prop_ind = "Proportion of Independent Countries", 
+             ind_count = "Number of Independent Countries",
+             not_ind_count = "Number of Non-Independent Countries") |>
+  tab_style(cell_text(weight = "bold"),
+            locations = cells_column_labels(everything())) |>
+  data_color(prop_ind,
+             palette = "Blues") |>
+  fmt_percent(columns = prop_ind) |>
+  tab_caption(caption = md("Yearly percent of recorded countries that were independent."))
+
+```
