@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Kaatje Matthews-vanKoetsveld">
+<meta name="author" content="Franchesca Garcia, Kaatje Matthews-vanKoetsveld, Jett Palmer">
 
-<title>Project 1 - Checkpoint 1</title>
+<title>Project 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -2200,15 +2200,43 @@ vertical-align: -.125em;
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#checkpoint-1" id="toc-checkpoint-1" class="nav-link active" data-scroll-target="#checkpoint-1">Checkpoint 1</a>
+  <ul class="collapse">
+  <li><a href="#data-context" id="toc-data-context" class="nav-link" data-scroll-target="#data-context">Data Context</a></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning">Data Cleaning</a></li>
+  <li><a href="#research-questions-from-data" id="toc-research-questions-from-data" class="nav-link" data-scroll-target="#research-questions-from-data">Research Questions from Data</a></li>
+  <li><a href="#research-questions-with-supplemental-data" id="toc-research-questions-with-supplemental-data" class="nav-link" data-scroll-target="#research-questions-with-supplemental-data">Research Questions with Supplemental Data</a></li>
+  <li><a href="#visualization-sketches" id="toc-visualization-sketches" class="nav-link" data-scroll-target="#visualization-sketches">Visualization Sketches</a></li>
+  </ul></li>
+  <li><a href="#checkpoint-2" id="toc-checkpoint-2" class="nav-link" data-scroll-target="#checkpoint-2">Checkpoint 2</a>
+  <ul class="collapse">
+  <li><a href="#unmodified-data-summaries" id="toc-unmodified-data-summaries" class="nav-link" data-scroll-target="#unmodified-data-summaries">Unmodified data summaries</a>
+  <ul class="collapse">
+  <li><a href="#count-of-regimes-and-percent-of-dictatorships-per-country" id="toc-count-of-regimes-and-percent-of-dictatorships-per-country" class="nav-link" data-scroll-target="#count-of-regimes-and-percent-of-dictatorships-per-country">Count of Regimes and Percent of Dictatorships Per Country</a></li>
+  <li><a href="#democratic-principals-by-regime-categories" id="toc-democratic-principals-by-regime-categories" class="nav-link" data-scroll-target="#democratic-principals-by-regime-categories">Democratic Principals by Regime Categories</a></li>
+  </ul></li>
+  <li><a href="#modified-data-summaries" id="toc-modified-data-summaries" class="nav-link" data-scroll-target="#modified-data-summaries">Modified data summaries</a>
+  <ul class="collapse">
+  <li><a href="#percent-of-independent-countries-over-the-years" id="toc-percent-of-independent-countries-over-the-years" class="nav-link" data-scroll-target="#percent-of-independent-countries-over-the-years">Percent of Independent Countries Over the Years</a></li>
+  <li><a href="#forms-of-governance-by-world-region" id="toc-forms-of-governance-by-world-region" class="nav-link" data-scroll-target="#forms-of-governance-by-world-region">Forms of Governance by World Region</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project 1 - Checkpoint 1</h1>
+<h1 class="title">Project 1</h1>
 </div>
 
 
@@ -2218,7 +2246,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Kaatje Matthews-vanKoetsveld </p>
+             <p>Franchesca Garcia, Kaatje Matthews-vanKoetsveld, Jett Palmer </p>
           </div>
   </div>
     
@@ -2251,7 +2279,7 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h2>
 <p>The cleaning script for the data is in the code chunk below. The orginal pacl data is being cleaned and updated in this script.</p>
 <div class="cell">
-<details open class="code-fold">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data from the package {democracyData}</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;pak&quot;)</span></span>
@@ -2384,63 +2412,68 @@ vertical-align: -.125em;
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>count_regimes <span class="ot">&lt;-</span> <span class="cf">function</span>(country) {</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  regimes <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(country_code <span class="sc">==</span> country) <span class="sc">|&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prev_regime =</span> <span class="fu">lag</span>(regime_category)) <span class="sc">|&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="fu">min</span>(year) <span class="sc">|</span> regime_category <span class="sc">!=</span> prev_regime)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>(regimes)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculates the number of regime changes for a given country</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>count_regimes <span class="ot">&lt;-</span> <span class="cf">function</span>(country) {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(country_code <span class="sc">==</span> country) <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prev_regime =</span> <span class="fu">lag</span>(regime_category)) <span class="sc">|&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="fu">min</span>(year) <span class="sc">|</span> regime_category <span class="sc">!=</span> prev_regime) <span class="sc">|&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nrow</span>()</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>count_dictatorships <span class="ot">&lt;-</span> <span class="cf">function</span>(country) {</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  dictatorships <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(country_code <span class="sc">==</span> country) <span class="sc">|&gt;</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prev_regime =</span> <span class="fu">lag</span>(regime_category)) <span class="sc">|&gt;</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="fu">min</span>(year) <span class="sc">|</span> regime_category <span class="sc">!=</span> prev_regime, regime_category_index <span class="sc">&gt;=</span> <span class="dv">3</span>)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>(dictatorships)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="sc">|&gt;</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(country_code, country_name) <span class="sc">|&gt;</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_regimes =</span> <span class="fu">map_dbl</span>(country_code, count_regimes),</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>         <span class="at">n_dicts =</span> <span class="fu">map_dbl</span>(country_code, count_dictatorships),</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>         <span class="at">prop_dict =</span> n_dicts<span class="sc">/</span>n_regimes) <span class="sc">|&gt;</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country_name, n_regimes, prop_dict) <span class="sc">|&gt;</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_regimes)) <span class="sc">|&gt;</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">country_name =</span> <span class="st">&quot;Country&quot;</span>, </span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>             <span class="at">n_regimes =</span> <span class="st">&quot;Number of Regimes&quot;</span>,</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_dict =</span> <span class="st">&quot;Percent Dictatorship&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="fu">everything</span>())) <span class="sc">|&gt;</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> prop_dict) <span class="sc">|&gt;</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data_color</span>(prop_dict,</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>             <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_caption</span>(<span class="at">caption =</span> <span class="fu">md</span>(<span class="st">&quot;Counts of regimes per country, with the percent of regimes that were dictatorships.&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculates the number of regimes that were dictatorships for a given country</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Regime index of 3, 4, or 5 indicates a dictatorship</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>count_dictatorships <span class="ot">&lt;-</span> <span class="cf">function</span>(country) {</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(country_code <span class="sc">==</span> country) <span class="sc">|&gt;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prev_regime =</span> <span class="fu">lag</span>(regime_category)) <span class="sc">|&gt;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="fu">min</span>(year) <span class="sc">|</span> regime_category <span class="sc">!=</span> prev_regime, </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>           regime_category_index <span class="sc">&gt;=</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nrow</span>()</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(country_code, country_name) <span class="sc">|&gt;</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Uses map to iteratively apply the custom functions above and calculates the </span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># proportion of regimes that were/are dictatorships in each country</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_regimes =</span> <span class="fu">map_dbl</span>(country_code, count_regimes),</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>         <span class="at">n_dicts =</span> <span class="fu">map_dbl</span>(country_code, count_dictatorships),</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>         <span class="at">prop_dict =</span> n_dicts<span class="sc">/</span>n_regimes) <span class="sc">|&gt;</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country_name, n_regimes, prop_dict) <span class="sc">|&gt;</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_regimes)) <span class="sc">|&gt;</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">country_name =</span> <span class="st">&quot;Country&quot;</span>, </span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>             <span class="at">n_regimes =</span> <span class="st">&quot;Number of Regimes&quot;</span>,</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_dict =</span> <span class="st">&quot;Percent Dictatorship&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="fu">everything</span>())) <span class="sc">|&gt;</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> prop_dict) <span class="sc">|&gt;</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data_color</span>(prop_dict,</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>             <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_caption</span>(<span class="at">caption =</span> <span class="fu">md</span>(<span class="st">&quot;Counts of regimes per country, with the percent of regimes that were dictatorships.&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="dwasstgfzw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dwasstgfzw table {
+<div id="vqgtibbpzs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vqgtibbpzs table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#dwasstgfzw thead, #dwasstgfzw tbody, #dwasstgfzw tfoot, #dwasstgfzw tr, #dwasstgfzw td, #dwasstgfzw th {
+#vqgtibbpzs thead, #vqgtibbpzs tbody, #vqgtibbpzs tfoot, #vqgtibbpzs tr, #vqgtibbpzs td, #vqgtibbpzs th {
 border-style: none;
 }
-#dwasstgfzw p {
+#vqgtibbpzs p {
 margin: 0;
 padding: 0;
 }
-#dwasstgfzw .gt_table {
+#vqgtibbpzs .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -2465,11 +2498,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#dwasstgfzw .gt_caption {
+#vqgtibbpzs .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#dwasstgfzw .gt_title {
+#vqgtibbpzs .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -2480,7 +2513,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#dwasstgfzw .gt_subtitle {
+#vqgtibbpzs .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -2491,7 +2524,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#dwasstgfzw .gt_heading {
+#vqgtibbpzs .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -2502,12 +2535,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#dwasstgfzw .gt_bottom_border {
+#vqgtibbpzs .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#dwasstgfzw .gt_col_headings {
+#vqgtibbpzs .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2521,7 +2554,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#dwasstgfzw .gt_col_heading {
+#vqgtibbpzs .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2540,7 +2573,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#dwasstgfzw .gt_column_spanner_outer {
+#vqgtibbpzs .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2551,13 +2584,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#dwasstgfzw .gt_column_spanner_outer:first-child {
+#vqgtibbpzs .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#dwasstgfzw .gt_column_spanner_outer:last-child {
+#vqgtibbpzs .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#dwasstgfzw .gt_column_spanner {
+#vqgtibbpzs .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -2568,10 +2601,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#dwasstgfzw .gt_spanner_row {
+#vqgtibbpzs .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#dwasstgfzw .gt_group_heading {
+#vqgtibbpzs .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2596,7 +2629,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#dwasstgfzw .gt_empty_group_heading {
+#vqgtibbpzs .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -2610,13 +2643,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#dwasstgfzw .gt_from_md > :first-child {
+#vqgtibbpzs .gt_from_md > :first-child {
 margin-top: 0;
 }
-#dwasstgfzw .gt_from_md > :last-child {
+#vqgtibbpzs .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#dwasstgfzw .gt_row {
+#vqgtibbpzs .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2634,7 +2667,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#dwasstgfzw .gt_stub {
+#vqgtibbpzs .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2646,7 +2679,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dwasstgfzw .gt_stub_row_group {
+#vqgtibbpzs .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2659,13 +2692,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#dwasstgfzw .gt_row_group_first td {
+#vqgtibbpzs .gt_row_group_first td {
 border-top-width: 2px;
 }
-#dwasstgfzw .gt_row_group_first th {
+#vqgtibbpzs .gt_row_group_first th {
 border-top-width: 2px;
 }
-#dwasstgfzw .gt_summary_row {
+#vqgtibbpzs .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2674,14 +2707,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dwasstgfzw .gt_first_summary_row {
+#vqgtibbpzs .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#dwasstgfzw .gt_first_summary_row.thick {
+#vqgtibbpzs .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#dwasstgfzw .gt_last_summary_row {
+#vqgtibbpzs .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2690,7 +2723,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#dwasstgfzw .gt_grand_summary_row {
+#vqgtibbpzs .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2699,7 +2732,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dwasstgfzw .gt_first_grand_summary_row {
+#vqgtibbpzs .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2708,7 +2741,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#dwasstgfzw .gt_last_grand_summary_row_top {
+#vqgtibbpzs .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2717,10 +2750,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#dwasstgfzw .gt_striped {
+#vqgtibbpzs .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#dwasstgfzw .gt_table_body {
+#vqgtibbpzs .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2728,7 +2761,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#dwasstgfzw .gt_footnotes {
+#vqgtibbpzs .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2741,7 +2774,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#dwasstgfzw .gt_footnote {
+#vqgtibbpzs .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -2749,7 +2782,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dwasstgfzw .gt_sourcenotes {
+#vqgtibbpzs .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2762,64 +2795,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#dwasstgfzw .gt_sourcenote {
+#vqgtibbpzs .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dwasstgfzw .gt_left {
+#vqgtibbpzs .gt_left {
 text-align: left;
 }
-#dwasstgfzw .gt_center {
+#vqgtibbpzs .gt_center {
 text-align: center;
 }
-#dwasstgfzw .gt_right {
+#vqgtibbpzs .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#dwasstgfzw .gt_font_normal {
+#vqgtibbpzs .gt_font_normal {
 font-weight: normal;
 }
-#dwasstgfzw .gt_font_bold {
+#vqgtibbpzs .gt_font_bold {
 font-weight: bold;
 }
-#dwasstgfzw .gt_font_italic {
+#vqgtibbpzs .gt_font_italic {
 font-style: italic;
 }
-#dwasstgfzw .gt_super {
+#vqgtibbpzs .gt_super {
 font-size: 65%;
 }
-#dwasstgfzw .gt_footnote_marks {
+#vqgtibbpzs .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#dwasstgfzw .gt_asterisk {
+#vqgtibbpzs .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#dwasstgfzw .gt_indent_1 {
+#vqgtibbpzs .gt_indent_1 {
 text-indent: 5px;
 }
-#dwasstgfzw .gt_indent_2 {
+#vqgtibbpzs .gt_indent_2 {
 text-indent: 10px;
 }
-#dwasstgfzw .gt_indent_3 {
+#vqgtibbpzs .gt_indent_3 {
 text-indent: 15px;
 }
-#dwasstgfzw .gt_indent_4 {
+#vqgtibbpzs .gt_indent_4 {
 text-indent: 20px;
 }
-#dwasstgfzw .gt_indent_5 {
+#vqgtibbpzs .gt_indent_5 {
 text-indent: 25px;
 }
-#dwasstgfzw .katex-display {
+#vqgtibbpzs .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#dwasstgfzw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vqgtibbpzs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -3881,61 +3914,77 @@ height: 0px !important;
 </div>
 </div>
 </section>
-</section>
-<section id="modified-data-summaries" class="level2">
-<h2 class="anchored" data-anchor-id="modified-data-summaries">Modified data summaries</h2>
-<section id="percent-of-independent-countries-over-the-years" class="level3">
-<h3 class="anchored" data-anchor-id="percent-of-independent-countries-over-the-years">Percent of Independent Countries Over the Years</h3>
-<p><em>new columns, requires custom function and iteration</em></p>
+<section id="democratic-principals-by-regime-categories" class="level3">
+<h3 class="anchored" data-anchor-id="democratic-principals-by-regime-categories">Democratic Principals by Regime Categories</h3>
+<p><em>no new columns, requires custom function and no iteration</em></p>
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>is_not_ind <span class="ot">&lt;-</span> <span class="cf">function</span>(regime_category_index, regime_category) {</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">is.na</span>(regime_category_index) <span class="sc">|</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    regime_category <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Colony&quot;</span>, </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&quot;British Overseas Territory&quot;</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="sc">|&gt;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">not_independent =</span> <span class="fu">map2_lgl</span>(regime_category_index,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                                    regime_category,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                                    is_not_ind)) <span class="sc">|&gt;</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">ind_count =</span> <span class="fu">sum</span>(<span class="sc">!</span>not_independent),</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">not_ind_count =</span> <span class="fu">sum</span>(not_independent)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_ind =</span> ind_count<span class="sc">/</span>(ind_count <span class="sc">+</span> not_ind_count)) <span class="sc">|&gt;</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, prop_ind, ind_count, not_ind_count) <span class="sc">|&gt;</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">year =</span> <span class="st">&quot;Year&quot;</span>, </span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_ind =</span> <span class="st">&quot;Proportion of Independent Countries&quot;</span>, </span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>             <span class="at">ind_count =</span> <span class="st">&quot;Number of Independent Countries&quot;</span>,</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>             <span class="at">not_ind_count =</span> <span class="st">&quot;Number of Non-Independent Countries&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="fu">everything</span>())) <span class="sc">|&gt;</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data_color</span>(prop_ind,</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>             <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> prop_ind) <span class="sc">|&gt;</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_caption</span>(<span class="at">caption =</span> <span class="fu">md</span>(<span class="st">&quot;Yearly percent of recorded countries that were independent.&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># regimes is optional input as a vector of regime categories</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the default argument looks at the 4 we wish to compare</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>summarize_regimes <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">regimes =</span> <span class="fu">c</span>(<span class="st">&quot;Civilian dictatorship&quot;</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">&quot;Parliamentary democracy&quot;</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">&quot;Military dictatorship&quot;</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">&quot;Presidential democracy&quot;</span>)) {</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># For each regime type the proportion of observations with each democratic</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># principle is calculated</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(regime_category <span class="sc">%in%</span> regimes) <span class="sc">|&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(regime_category) <span class="sc">|&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">prop_demo =</span> <span class="fu">sum</span>(is_democracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> n,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">prop_suffrage =</span> <span class="fu">sum</span>(has_full_suffrage, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> n,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">prop_multiparty =</span> <span class="fu">sum</span>(is_multiparty, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> n,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">prop_free_fair =</span> <span class="fu">sum</span>(has_free_and_fair_election, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> n,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">prop_alternation =</span> <span class="fu">sum</span>(has_alternation, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> n</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">regime_category =</span> <span class="st">&quot;Regime&quot;</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> <span class="st">&quot;Number of Observations&quot;</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">prop_demo =</span> <span class="st">&quot;Democratic&quot;</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">prop_suffrage =</span> <span class="st">&quot;Full Voting Rights&quot;</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">prop_multiparty =</span> <span class="st">&quot;Multi-Party Elections&quot;</span>,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">prop_free_fair =</span> <span class="st">&quot;Free &amp; Fair Elections&quot;</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">prop_alternation =</span> <span class="st">&quot;Rotating Top Office&quot;</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_style</span>(</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="fu">everything</span>())</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_percent</span>(<span class="at">columns =</span> <span class="sc">-</span><span class="fu">c</span>(n, regime_category)) <span class="sc">|&gt;</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_caption</span>(</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="fu">md</span>(<span class="st">&quot;Percent of observations demonstrating democratic principals, by regime category&quot;</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_spanner</span>(</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">&quot;Democratic Principals Represented (% Observations)&quot;</span>,</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="sc">-</span><span class="fu">c</span>(n, regime_category)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data_color</span>(</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="sc">-</span><span class="fu">c</span>(n, regime_category),</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize_regimes</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="dsxiygmaae" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dsxiygmaae table {
+<div id="zgigeauful" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zgigeauful table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#dsxiygmaae thead, #dsxiygmaae tbody, #dsxiygmaae tfoot, #dsxiygmaae tr, #dsxiygmaae td, #dsxiygmaae th {
+#zgigeauful thead, #zgigeauful tbody, #zgigeauful tfoot, #zgigeauful tr, #zgigeauful td, #zgigeauful th {
 border-style: none;
 }
-#dsxiygmaae p {
+#zgigeauful p {
 margin: 0;
 padding: 0;
 }
-#dsxiygmaae .gt_table {
+#zgigeauful .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -3960,11 +4009,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#dsxiygmaae .gt_caption {
+#zgigeauful .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#dsxiygmaae .gt_title {
+#zgigeauful .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -3975,7 +4024,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#dsxiygmaae .gt_subtitle {
+#zgigeauful .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -3986,7 +4035,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#dsxiygmaae .gt_heading {
+#zgigeauful .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -3997,12 +4046,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#dsxiygmaae .gt_bottom_border {
+#zgigeauful .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#dsxiygmaae .gt_col_headings {
+#zgigeauful .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4016,7 +4065,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#dsxiygmaae .gt_col_heading {
+#zgigeauful .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4035,7 +4084,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#dsxiygmaae .gt_column_spanner_outer {
+#zgigeauful .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4046,13 +4095,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#dsxiygmaae .gt_column_spanner_outer:first-child {
+#zgigeauful .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#dsxiygmaae .gt_column_spanner_outer:last-child {
+#zgigeauful .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#dsxiygmaae .gt_column_spanner {
+#zgigeauful .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -4063,10 +4112,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#dsxiygmaae .gt_spanner_row {
+#zgigeauful .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#dsxiygmaae .gt_group_heading {
+#zgigeauful .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4091,7 +4140,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#dsxiygmaae .gt_empty_group_heading {
+#zgigeauful .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -4105,13 +4154,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#dsxiygmaae .gt_from_md > :first-child {
+#zgigeauful .gt_from_md > :first-child {
 margin-top: 0;
 }
-#dsxiygmaae .gt_from_md > :last-child {
+#zgigeauful .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#dsxiygmaae .gt_row {
+#zgigeauful .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4129,7 +4178,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#dsxiygmaae .gt_stub {
+#zgigeauful .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4141,7 +4190,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dsxiygmaae .gt_stub_row_group {
+#zgigeauful .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4154,13 +4203,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#dsxiygmaae .gt_row_group_first td {
+#zgigeauful .gt_row_group_first td {
 border-top-width: 2px;
 }
-#dsxiygmaae .gt_row_group_first th {
+#zgigeauful .gt_row_group_first th {
 border-top-width: 2px;
 }
-#dsxiygmaae .gt_summary_row {
+#zgigeauful .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4169,14 +4218,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dsxiygmaae .gt_first_summary_row {
+#zgigeauful .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#dsxiygmaae .gt_first_summary_row.thick {
+#zgigeauful .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#dsxiygmaae .gt_last_summary_row {
+#zgigeauful .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4185,7 +4234,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#dsxiygmaae .gt_grand_summary_row {
+#zgigeauful .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4194,7 +4243,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dsxiygmaae .gt_first_grand_summary_row {
+#zgigeauful .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4203,7 +4252,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#dsxiygmaae .gt_last_grand_summary_row_top {
+#zgigeauful .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4212,10 +4261,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#dsxiygmaae .gt_striped {
+#zgigeauful .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#dsxiygmaae .gt_table_body {
+#zgigeauful .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4223,7 +4272,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#dsxiygmaae .gt_footnotes {
+#zgigeauful .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4236,7 +4285,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#dsxiygmaae .gt_footnote {
+#zgigeauful .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -4244,7 +4293,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dsxiygmaae .gt_sourcenotes {
+#zgigeauful .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4257,64 +4306,577 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#dsxiygmaae .gt_sourcenote {
+#zgigeauful .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#dsxiygmaae .gt_left {
+#zgigeauful .gt_left {
 text-align: left;
 }
-#dsxiygmaae .gt_center {
+#zgigeauful .gt_center {
 text-align: center;
 }
-#dsxiygmaae .gt_right {
+#zgigeauful .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#dsxiygmaae .gt_font_normal {
+#zgigeauful .gt_font_normal {
 font-weight: normal;
 }
-#dsxiygmaae .gt_font_bold {
+#zgigeauful .gt_font_bold {
 font-weight: bold;
 }
-#dsxiygmaae .gt_font_italic {
+#zgigeauful .gt_font_italic {
 font-style: italic;
 }
-#dsxiygmaae .gt_super {
+#zgigeauful .gt_super {
 font-size: 65%;
 }
-#dsxiygmaae .gt_footnote_marks {
+#zgigeauful .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#dsxiygmaae .gt_asterisk {
+#zgigeauful .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#dsxiygmaae .gt_indent_1 {
+#zgigeauful .gt_indent_1 {
 text-indent: 5px;
 }
-#dsxiygmaae .gt_indent_2 {
+#zgigeauful .gt_indent_2 {
 text-indent: 10px;
 }
-#dsxiygmaae .gt_indent_3 {
+#zgigeauful .gt_indent_3 {
 text-indent: 15px;
 }
-#dsxiygmaae .gt_indent_4 {
+#zgigeauful .gt_indent_4 {
 text-indent: 20px;
 }
-#dsxiygmaae .gt_indent_5 {
+#zgigeauful .gt_indent_5 {
 text-indent: 25px;
 }
-#dsxiygmaae .katex-display {
+#zgigeauful .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#dsxiygmaae div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zgigeauful div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<caption>Percent of observations demonstrating democratic principals, by regime category</caption>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="regime_category" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Regime</th>
+<th rowspan="2" id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Number of Observations</th>
+<th colspan="5" id="Democratic Principals Represented (% Observations)" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+Democratic Principals Represented (% Observations)
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="prop_demo" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Democratic</th>
+<th id="prop_suffrage" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Full Voting Rights</th>
+<th id="prop_multiparty" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Multi-Party Elections</th>
+<th id="prop_free_fair" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Free &amp; Fair Elections</th>
+<th id="prop_alternation" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Rotating Top Office</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">Civilian dictatorship</td>
+<td class="gt_row gt_right" headers="n">2998</td>
+<td class="gt_row gt_right" headers="prop_demo" style="background-color: #F7FBFF; color: #000000">0.03%</td>
+<td class="gt_row gt_right" headers="prop_suffrage" style="background-color: #85BCDB; color: #000000">93.70%</td>
+<td class="gt_row gt_right" headers="prop_multiparty" style="background-color: #CEE1F2; color: #000000">52.43%</td>
+<td class="gt_row gt_right" headers="prop_free_fair" style="background-color: #F1F7FD; color: #000000">3.14%</td>
+<td class="gt_row gt_right" headers="prop_alternation" style="background-color: #F6FAFF; color: #000000">0.47%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="regime_category">Military dictatorship</td>
+<td class="gt_row gt_right" headers="n">1892</td>
+<td class="gt_row gt_right" headers="prop_demo" style="background-color: #F7FBFF; color: #000000">0.05%</td>
+<td class="gt_row gt_right" headers="prop_suffrage" style="background-color: #F7FBFF; color: #000000">90.91%</td>
+<td class="gt_row gt_right" headers="prop_multiparty" style="background-color: #F7FBFF; color: #000000">40.12%</td>
+<td class="gt_row gt_right" headers="prop_free_fair" style="background-color: #F7FBFF; color: #000000">0.26%</td>
+<td class="gt_row gt_right" headers="prop_alternation" style="background-color: #F7FBFF; color: #000000">0.05%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">Parliamentary democracy</td>
+<td class="gt_row gt_right" headers="n">2660</td>
+<td class="gt_row gt_right" headers="prop_demo" style="background-color: #08306B; color: #FFFFFF">99.89%</td>
+<td class="gt_row gt_right" headers="prop_suffrage" style="background-color: #08306B; color: #FFFFFF">97.26%</td>
+<td class="gt_row gt_right" headers="prop_multiparty" style="background-color: #08306B; color: #FFFFFF">99.89%</td>
+<td class="gt_row gt_right" headers="prop_free_fair" style="background-color: #08306B; color: #FFFFFF">99.89%</td>
+<td class="gt_row gt_right" headers="prop_alternation" style="background-color: #08306B; color: #FFFFFF">99.89%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="regime_category">Presidential democracy</td>
+<td class="gt_row gt_right" headers="n">1509</td>
+<td class="gt_row gt_right" headers="prop_demo" style="background-color: #08306B; color: #FFFFFF">99.87%</td>
+<td class="gt_row gt_right" headers="prop_suffrage" style="background-color: #D4E4F4; color: #000000">92.05%</td>
+<td class="gt_row gt_right" headers="prop_multiparty" style="background-color: #08306B; color: #FFFFFF">99.87%</td>
+<td class="gt_row gt_right" headers="prop_free_fair" style="background-color: #08306B; color: #FFFFFF">99.87%</td>
+<td class="gt_row gt_right" headers="prop_alternation" style="background-color: #08316C; color: #FFFFFF">99.67%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="modified-data-summaries" class="level2">
+<h2 class="anchored" data-anchor-id="modified-data-summaries">Modified data summaries</h2>
+<section id="percent-of-independent-countries-over-the-years" class="level3">
+<h3 class="anchored" data-anchor-id="percent-of-independent-countries-over-the-years">Percent of Independent Countries Over the Years</h3>
+<p><em>new columns, requires custom function and iteration</em></p>
+<div class="cell">
+<details open class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checks if the regime is not independent via its regime category</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>is_not_ind <span class="ot">&lt;-</span> <span class="cf">function</span>(regime_category_index, regime_category) {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">is.na</span>(regime_category_index) <span class="sc">|</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    regime_category <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Colony&quot;</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&quot;British Overseas Territory&quot;</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Uses map to iteratively apply the not independent function above</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">not_independent =</span> <span class="fu">map2_lgl</span>(regime_category_index,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                                    regime_category,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                                    is_not_ind)) <span class="sc">|&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># For each year in the data, the counts and proportion of independent contries</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># are calculated</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">ind_count =</span> <span class="fu">sum</span>(<span class="sc">!</span>not_independent),</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">not_ind_count =</span> <span class="fu">sum</span>(not_independent)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_ind =</span> ind_count<span class="sc">/</span>(ind_count <span class="sc">+</span> not_ind_count)) <span class="sc">|&gt;</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, prop_ind, ind_count, not_ind_count) <span class="sc">|&gt;</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">year =</span> <span class="st">&quot;Year&quot;</span>, </span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_ind =</span> <span class="st">&quot;Proportion of Independent Countries&quot;</span>, </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>             <span class="at">ind_count =</span> <span class="st">&quot;Number of Independent Countries&quot;</span>,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>             <span class="at">not_ind_count =</span> <span class="st">&quot;Number of Non-Independent Countries&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="fu">everything</span>())) <span class="sc">|&gt;</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data_color</span>(prop_ind,</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>             <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> prop_ind) <span class="sc">|&gt;</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_caption</span>(<span class="at">caption =</span> <span class="fu">md</span>(<span class="st">&quot;Yearly percent of recorded countries that were independent.&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="naaqyklqlh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#naaqyklqlh table {
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#naaqyklqlh thead, #naaqyklqlh tbody, #naaqyklqlh tfoot, #naaqyklqlh tr, #naaqyklqlh td, #naaqyklqlh th {
+border-style: none;
+}
+#naaqyklqlh p {
+margin: 0;
+padding: 0;
+}
+#naaqyklqlh .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#naaqyklqlh .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#naaqyklqlh .gt_title {
+color: #333333;
+font-size: 125%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#naaqyklqlh .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#naaqyklqlh .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#naaqyklqlh .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#naaqyklqlh .gt_col_headings {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#naaqyklqlh .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#naaqyklqlh .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#naaqyklqlh .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#naaqyklqlh .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#naaqyklqlh .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#naaqyklqlh .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#naaqyklqlh .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#naaqyklqlh .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#naaqyklqlh .gt_from_md > :first-child {
+margin-top: 0;
+}
+#naaqyklqlh .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#naaqyklqlh .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#naaqyklqlh .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#naaqyklqlh .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#naaqyklqlh .gt_row_group_first td {
+border-top-width: 2px;
+}
+#naaqyklqlh .gt_row_group_first th {
+border-top-width: 2px;
+}
+#naaqyklqlh .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#naaqyklqlh .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#naaqyklqlh .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#naaqyklqlh .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#naaqyklqlh .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#naaqyklqlh .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#naaqyklqlh .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#naaqyklqlh .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#naaqyklqlh .gt_table_body {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#naaqyklqlh .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#naaqyklqlh .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#naaqyklqlh .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#naaqyklqlh .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#naaqyklqlh .gt_left {
+text-align: left;
+}
+#naaqyklqlh .gt_center {
+text-align: center;
+}
+#naaqyklqlh .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#naaqyklqlh .gt_font_normal {
+font-weight: normal;
+}
+#naaqyklqlh .gt_font_bold {
+font-weight: bold;
+}
+#naaqyklqlh .gt_font_italic {
+font-style: italic;
+}
+#naaqyklqlh .gt_super {
+font-size: 65%;
+}
+#naaqyklqlh .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#naaqyklqlh .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#naaqyklqlh .gt_indent_1 {
+text-indent: 5px;
+}
+#naaqyklqlh .gt_indent_2 {
+text-indent: 10px;
+}
+#naaqyklqlh .gt_indent_3 {
+text-indent: 15px;
+}
+#naaqyklqlh .gt_indent_4 {
+text-indent: 20px;
+}
+#naaqyklqlh .gt_indent_5 {
+text-indent: 25px;
+}
+#naaqyklqlh .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#naaqyklqlh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -4769,67 +5331,67 @@ height: 0px !important;
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(countrycode)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Creates the region column using the countrycode package</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">countrycode</span>(country_code,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">origin =</span> <span class="st">&#39;iso3c&#39;</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">destination =</span> <span class="st">&#39;region&#39;</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                              <span class="co"># Custom matches for the codes that don&#39;t find match</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">custom_match =</span> <span class="fu">c</span>(<span class="st">&#39;ZAR&#39;</span> <span class="ot">=</span> <span class="st">&#39;Sub-Saharan Africa&#39;</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                                               <span class="st">&#39;GER&#39;</span> <span class="ot">=</span> <span class="st">&#39;Europe &amp; Central Asia&#39;</span>,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                                               <span class="st">&#39;NUR&#39;</span> <span class="ot">=</span> <span class="st">&#39;East Asia &amp; Pacific&#39;</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                                               <span class="st">&#39;PRI&#39;</span> <span class="ot">=</span> <span class="st">&#39;Latin America &amp; Caribbean&#39;</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                                               <span class="st">&#39;ROM&#39;</span> <span class="ot">=</span> <span class="st">&#39;Europe &amp; Central Asia&#39;</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                                               )</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                              )</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>         )</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="sc">|&gt;</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Proportions of each form of governance</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">prop_demo =</span> <span class="fu">sum</span>(is_democracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>n,</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">prop_pres =</span> <span class="fu">sum</span>(is_presidential, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>n,</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">prop_mon =</span> <span class="fu">sum</span>(is_monarchy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>n,</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">prop_comw =</span> <span class="fu">sum</span>(is_commonwealth, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>n,</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">prop_colon =</span> <span class="fu">sum</span>(is_colony, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>n,</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">prop_comm =</span> <span class="fu">sum</span>(is_communist, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>n</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>            ) <span class="sc">|&gt;</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">region =</span> <span class="st">&quot;World Region&quot;</span>, </span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>             <span class="at">n =</span> <span class="st">&quot;Number of Observations&quot;</span>,</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_demo =</span> <span class="st">&quot;Percent Democratic&quot;</span>,</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_pres =</span> <span class="st">&quot;Percent Presidential&quot;</span>,</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_mon =</span> <span class="st">&quot;Percent Monarchy&quot;</span>,</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_comw =</span> <span class="st">&quot;Percent Commonwealth&quot;</span>,</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_colon =</span> <span class="st">&quot;Percent Colony&quot;</span>,</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_comm =</span> <span class="st">&quot;Percent Communist&quot;</span>,</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>             ) <span class="sc">|&gt;</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="fu">everything</span>())) <span class="sc">|&gt;</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> <span class="sc">-</span><span class="fu">c</span>(n, region)) <span class="sc">|&gt;</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_caption</span>(<span class="at">caption =</span> <span class="fu">md</span>(<span class="st">&quot;Percent of observations under each form of governance, by World Region.&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(<span class="at">label =</span> <span class="st">&quot;Governance Type (%)&quot;</span>,</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>              <span class="at">columns =</span> <span class="sc">-</span><span class="fu">c</span>(n, region)) <span class="sc">|&gt;</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data_color</span>(<span class="at">columns =</span> <span class="sc">-</span><span class="fu">c</span>(n, region),</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>             <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(countrycode)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Creates the region column using the countrycode package</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">countrycode</span>(country_code,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">origin =</span> <span class="st">&#39;iso3c&#39;</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">destination =</span> <span class="st">&#39;region&#39;</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                              <span class="co"># Custom matches for the codes that don&#39;t find match</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">custom_match =</span> <span class="fu">c</span>(<span class="st">&#39;ZAR&#39;</span> <span class="ot">=</span> <span class="st">&#39;Sub-Saharan Africa&#39;</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                                               <span class="st">&#39;GER&#39;</span> <span class="ot">=</span> <span class="st">&#39;Europe &amp; Central Asia&#39;</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                                               <span class="st">&#39;NUR&#39;</span> <span class="ot">=</span> <span class="st">&#39;East Asia &amp; Pacific&#39;</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                                               <span class="st">&#39;PRI&#39;</span> <span class="ot">=</span> <span class="st">&#39;Latin America &amp; Caribbean&#39;</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                                               <span class="st">&#39;ROM&#39;</span> <span class="ot">=</span> <span class="st">&#39;Europe &amp; Central Asia&#39;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                                               )</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                              )</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Proportions of each form of governance</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">prop_demo =</span> <span class="fu">sum</span>(is_democracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>n,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">prop_pres =</span> <span class="fu">sum</span>(is_presidential, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>n,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">prop_mon =</span> <span class="fu">sum</span>(is_monarchy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>n,</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">prop_comw =</span> <span class="fu">sum</span>(is_commonwealth, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>n,</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">prop_colon =</span> <span class="fu">sum</span>(is_colony, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>n,</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">prop_comm =</span> <span class="fu">sum</span>(is_communist, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span>n</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>            ) <span class="sc">|&gt;</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">region =</span> <span class="st">&quot;World Region&quot;</span>, </span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>             <span class="at">n =</span> <span class="st">&quot;Number of Observations&quot;</span>,</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_demo =</span> <span class="st">&quot;Percent Democratic&quot;</span>,</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_pres =</span> <span class="st">&quot;Percent Presidential&quot;</span>,</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_mon =</span> <span class="st">&quot;Percent Monarchy&quot;</span>,</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_comw =</span> <span class="st">&quot;Percent Commonwealth&quot;</span>,</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_colon =</span> <span class="st">&quot;Percent Colony&quot;</span>,</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>             <span class="at">prop_comm =</span> <span class="st">&quot;Percent Communist&quot;</span>,</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>             ) <span class="sc">|&gt;</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="fu">everything</span>())) <span class="sc">|&gt;</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> <span class="sc">-</span><span class="fu">c</span>(n, region)) <span class="sc">|&gt;</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_caption</span>(<span class="at">caption =</span> <span class="fu">md</span>(<span class="st">&quot;Percent of observations under each form of governance, by World Region.&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(<span class="at">label =</span> <span class="st">&quot;Governance Type (%)&quot;</span>,</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>              <span class="at">columns =</span> <span class="sc">-</span><span class="fu">c</span>(n, region)) <span class="sc">|&gt;</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data_color</span>(<span class="at">columns =</span> <span class="sc">-</span><span class="fu">c</span>(n, region),</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>             <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="piaoiravpg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#piaoiravpg table {
+<div id="usxireyvok" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#usxireyvok table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#piaoiravpg thead, #piaoiravpg tbody, #piaoiravpg tfoot, #piaoiravpg tr, #piaoiravpg td, #piaoiravpg th {
+#usxireyvok thead, #usxireyvok tbody, #usxireyvok tfoot, #usxireyvok tr, #usxireyvok td, #usxireyvok th {
 border-style: none;
 }
-#piaoiravpg p {
+#usxireyvok p {
 margin: 0;
 padding: 0;
 }
-#piaoiravpg .gt_table {
+#usxireyvok .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -4854,11 +5416,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#piaoiravpg .gt_caption {
+#usxireyvok .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#piaoiravpg .gt_title {
+#usxireyvok .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -4869,7 +5431,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#piaoiravpg .gt_subtitle {
+#usxireyvok .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -4880,7 +5442,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#piaoiravpg .gt_heading {
+#usxireyvok .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -4891,12 +5453,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#piaoiravpg .gt_bottom_border {
+#usxireyvok .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#piaoiravpg .gt_col_headings {
+#usxireyvok .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4910,7 +5472,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#piaoiravpg .gt_col_heading {
+#usxireyvok .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4929,7 +5491,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#piaoiravpg .gt_column_spanner_outer {
+#usxireyvok .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4940,13 +5502,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#piaoiravpg .gt_column_spanner_outer:first-child {
+#usxireyvok .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#piaoiravpg .gt_column_spanner_outer:last-child {
+#usxireyvok .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#piaoiravpg .gt_column_spanner {
+#usxireyvok .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -4957,10 +5519,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#piaoiravpg .gt_spanner_row {
+#usxireyvok .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#piaoiravpg .gt_group_heading {
+#usxireyvok .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4985,7 +5547,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#piaoiravpg .gt_empty_group_heading {
+#usxireyvok .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -4999,13 +5561,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#piaoiravpg .gt_from_md > :first-child {
+#usxireyvok .gt_from_md > :first-child {
 margin-top: 0;
 }
-#piaoiravpg .gt_from_md > :last-child {
+#usxireyvok .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#piaoiravpg .gt_row {
+#usxireyvok .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5023,7 +5585,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#piaoiravpg .gt_stub {
+#usxireyvok .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5035,7 +5597,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#piaoiravpg .gt_stub_row_group {
+#usxireyvok .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5048,13 +5610,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#piaoiravpg .gt_row_group_first td {
+#usxireyvok .gt_row_group_first td {
 border-top-width: 2px;
 }
-#piaoiravpg .gt_row_group_first th {
+#usxireyvok .gt_row_group_first th {
 border-top-width: 2px;
 }
-#piaoiravpg .gt_summary_row {
+#usxireyvok .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5063,14 +5625,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#piaoiravpg .gt_first_summary_row {
+#usxireyvok .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#piaoiravpg .gt_first_summary_row.thick {
+#usxireyvok .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#piaoiravpg .gt_last_summary_row {
+#usxireyvok .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5079,7 +5641,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#piaoiravpg .gt_grand_summary_row {
+#usxireyvok .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5088,7 +5650,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#piaoiravpg .gt_first_grand_summary_row {
+#usxireyvok .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5097,7 +5659,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#piaoiravpg .gt_last_grand_summary_row_top {
+#usxireyvok .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5106,10 +5668,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#piaoiravpg .gt_striped {
+#usxireyvok .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#piaoiravpg .gt_table_body {
+#usxireyvok .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5117,7 +5679,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#piaoiravpg .gt_footnotes {
+#usxireyvok .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5130,7 +5692,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#piaoiravpg .gt_footnote {
+#usxireyvok .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -5138,7 +5700,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#piaoiravpg .gt_sourcenotes {
+#usxireyvok .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5151,64 +5713,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#piaoiravpg .gt_sourcenote {
+#usxireyvok .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#piaoiravpg .gt_left {
+#usxireyvok .gt_left {
 text-align: left;
 }
-#piaoiravpg .gt_center {
+#usxireyvok .gt_center {
 text-align: center;
 }
-#piaoiravpg .gt_right {
+#usxireyvok .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#piaoiravpg .gt_font_normal {
+#usxireyvok .gt_font_normal {
 font-weight: normal;
 }
-#piaoiravpg .gt_font_bold {
+#usxireyvok .gt_font_bold {
 font-weight: bold;
 }
-#piaoiravpg .gt_font_italic {
+#usxireyvok .gt_font_italic {
 font-style: italic;
 }
-#piaoiravpg .gt_super {
+#usxireyvok .gt_super {
 font-size: 65%;
 }
-#piaoiravpg .gt_footnote_marks {
+#usxireyvok .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#piaoiravpg .gt_asterisk {
+#usxireyvok .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#piaoiravpg .gt_indent_1 {
+#usxireyvok .gt_indent_1 {
 text-indent: 5px;
 }
-#piaoiravpg .gt_indent_2 {
+#usxireyvok .gt_indent_2 {
 text-indent: 10px;
 }
-#piaoiravpg .gt_indent_3 {
+#usxireyvok .gt_indent_3 {
 text-indent: 15px;
 }
-#piaoiravpg .gt_indent_4 {
+#usxireyvok .gt_indent_4 {
 text-indent: 20px;
 }
-#piaoiravpg .gt_indent_5 {
+#usxireyvok .gt_indent_5 {
 text-indent: 25px;
 }
-#piaoiravpg .katex-display {
+#usxireyvok .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#piaoiravpg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#usxireyvok div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>

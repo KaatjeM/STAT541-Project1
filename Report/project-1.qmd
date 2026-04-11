@@ -1,7 +1,9 @@
 ---
-title: "Project 1 - Checkpoint 1"
-author: "Kaatje Matthews-vanKoetsveld"
-format: html
+title: "Project 1"
+author: "Franchesca Garcia, Kaatje Matthews-vanKoetsveld, Jett Palmer"
+format: 
+  html:
+    toc: true
 code-fold: show
 embed-resources: true
 editor: source
@@ -161,32 +163,37 @@ Lastly, any of the of the index, year, or members variables along with `parliame
 
 ```{r}
 
+# Calculates the number of regime changes for a given country
 count_regimes <- function(country) {
 
-  regimes <- democracy_data |>
+  democracy_data |>
     filter(country_code == country) |>
     arrange(year) |>
     mutate(prev_regime = lag(regime_category)) |>
-    filter(year == min(year) | regime_category != prev_regime)
-    
-  nrow(regimes)
+    filter(year == min(year) | regime_category != prev_regime) |>
+    nrow()
   
 }
 
+# Calculates the number of regimes that were dictatorships for a given country
+# Regime index of 3, 4, or 5 indicates a dictatorship
 count_dictatorships <- function(country) {
 
-  dictatorships <- democracy_data |>
+  democracy_data |>
     filter(country_code == country) |>
     arrange(year) |>
     mutate(prev_regime = lag(regime_category)) |>
-    filter(year == min(year) | regime_category != prev_regime, regime_category_index >= 3)
-    
-  nrow(dictatorships)
+    filter(year == min(year) | regime_category != prev_regime, 
+           regime_category_index >= 3) |>
+    nrow()
   
 }
+
 
 democracy_data |>
   distinct(country_code, country_name) |>
+  # Uses map to iteratively apply the custom functions above and calculates the 
+  # proportion of regimes that were/are dictatorships in each country
   mutate(n_regimes = map_dbl(country_code, count_regimes),
          n_dicts = map_dbl(country_code, count_dictatorships),
          prop_dict = n_dicts/n_regimes) |>
@@ -211,10 +218,15 @@ democracy_data |>
 *no new columns, requires custom function and no iteration*
 
 ```{r}
+# regimes is optional input as a vector of regime categories
+# the default argument looks at the 4 we wish to compare
 summarize_regimes <- function(regimes = c("Civilian dictatorship",
                                           "Parliamentary democracy",
                                           "Military dictatorship",
                                           "Presidential democracy")) {
+  
+  # For each regime type the proportion of observations with each democratic
+  # principle is calculated
   democracy_data |>
     filter(regime_category %in% regimes) |>
     group_by(regime_category) |>
@@ -264,7 +276,7 @@ summarize_regimes()
 *new columns, requires custom function and iteration*
 
 ```{r}
-
+# Checks if the regime is not independent via its regime category
 is_not_ind <- function(regime_category_index, regime_category) {
   
   is.na(regime_category_index) | 
@@ -273,10 +285,13 @@ is_not_ind <- function(regime_category_index, regime_category) {
   
 }
 
+# Uses map to iteratively apply the not independent function above
 democracy_data |>
   mutate(not_independent = map2_lgl(regime_category_index,
                                     regime_category,
                                     is_not_ind)) |>
+  # For each year in the data, the counts and proportion of independent contries
+  # are calculated
   group_by(year) |>
   summarise(
     ind_count = sum(!not_independent),
