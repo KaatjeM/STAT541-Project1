@@ -12,6 +12,7 @@ editor: source
 ```{r}
 #| output: false
 library(tidyverse)
+library(gt)
 democracy_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv')
 ```
 
@@ -29,6 +30,7 @@ The cleaning script for the data is in the code chunk below. The orginal pacl da
 
 ```{r}
 #| eval: false
+#| code-fold: true
 # Data from the package {democracyData}
 # install.packages("pak")
 # pak::pak("xmarquez/democracyData")
@@ -157,6 +159,8 @@ Lastly, any of the of the index, year, or members variables along with `parliame
 
 ### Count of Regimes and Percent of Dictatorships Per Country
 
+*no new columns, requires custom function and iteration*
+
 ```{r}
 
 count_regimes <- function(country) {
@@ -208,6 +212,8 @@ democracy_data |>
 
 ### Percent of Independent Countries Over the Years
 
+*new columns, requires custom function and iteration*
+
 ```{r}
 
 is_not_ind <- function(regime_category_index, regime_category) {
@@ -241,4 +247,56 @@ democracy_data |>
   fmt_percent(columns = prop_ind) |>
   tab_caption(caption = md("Yearly percent of recorded countries that were independent."))
 
+```
+
+### Forms of Governance by World Region
+
+*new column for region, no iteration or custom function*
+
+```{r}
+library(countrycode)
+democracy_data <- democracy_data |>
+  # Creates the region column using the countrycode package
+  mutate(region = countrycode(country_code,
+                              origin = 'iso3c',
+                              destination = 'region',
+                              # Custom matches for the codes that don't find match
+                              custom_match = c('ZAR' = 'Sub-Saharan Africa',
+                                               'GER' = 'Europe & Central Asia',
+                                               'NUR' = 'East Asia & Pacific',
+                                               'PRI' = 'Latin America & Caribbean',
+                                               'ROM' = 'Europe & Central Asia'
+                                               )
+                              )
+         )
+
+democracy_data |>
+  group_by(region) |>
+  # Proportions of each form of governance
+  summarize(n = n(),
+            prop_demo = sum(is_democracy, na.rm = TRUE)/n,
+            prop_pres = sum(is_presidential, na.rm = TRUE)/n,
+            prop_mon = sum(is_monarchy, na.rm = TRUE)/n,
+            prop_comw = sum(is_commonwealth, na.rm = TRUE)/n,
+            prop_colon = sum(is_colony, na.rm = TRUE)/n,
+            prop_comm = sum(is_communist, na.rm = TRUE)/n
+            ) |>
+  gt() |>
+  cols_label(region = "World Region", 
+             n = "Number of Observations",
+             prop_demo = "Percent Democratic",
+             prop_pres = "Percent Presidential",
+             prop_mon = "Percent Monarchy",
+             prop_comw = "Percent Commonwealth",
+             prop_colon = "Percent Colony",
+             prop_comm = "Percent Communist",
+             ) |>
+  tab_style(cell_text(weight = "bold"),
+            locations = cells_column_labels(everything())) |>
+  fmt_percent(columns = -c(n, region)) |>
+  tab_caption(caption = md("Percent of observations under each form of governance, by World Region.")) |>
+  tab_spanner(label = "Governance Type (%)",
+              columns = -c(n, region)) |>
+  data_color(columns = -c(n, region),
+             palette = "Blues")
 ```
