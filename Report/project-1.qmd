@@ -155,4 +155,53 @@ Lastly, any of the of the index, year, or members variables along with `parliame
 
 ## Unmodified data summaries
 
+### Count of Regimes and Percent of Dictatorships Per Country
+
+```{r}
+
+count_regimes <- function(country) {
+
+  regimes <- democracy_data |>
+    filter(country_code == country) |>
+    arrange(year) |>
+    mutate(prev_regime = lag(regime_category)) |>
+    filter(year == min(year) | regime_category != prev_regime)
+    
+  nrow(regimes)
+  
+}
+
+count_dictatorships <- function(country) {
+
+  dictatorships <- democracy_data |>
+    filter(country_code == country) |>
+    arrange(year) |>
+    mutate(prev_regime = lag(regime_category)) |>
+    filter(year == min(year) | regime_category != prev_regime, regime_category_index >= 3)
+    
+  nrow(dictatorships)
+  
+}
+
+democracy_data |>
+  distinct(country_code, country_name) |>
+  mutate(n_regimes = map_dbl(country_code, count_regimes),
+         n_dicts = map_dbl(country_code, count_dictatorships),
+         prop_dict = n_dicts/n_regimes) |>
+  select(country_name, n_regimes, prop_dict) |>
+  arrange(desc(n_regimes)) |>
+  gt() |>
+  cols_label(country_name = "Country", 
+             n_regimes = "Number of Regimes",
+             prop_dict = "Proportion of Dictatorships") |>
+  tab_style(cell_text(weight = "bold"),
+            locations = cells_column_labels(everything())) |>
+  fmt_percent(columns = prop_dict) |>
+  data_color(prop_dict,
+             palette = "Blues") |>
+  tab_caption(caption = md("Counts of regimes per country, with the percent of regimes that were dictatorships."))
+
+
+```
+
 ## Modified data summaries
