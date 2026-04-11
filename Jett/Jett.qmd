@@ -176,7 +176,7 @@ By importing GDP and coup d'états data, we might consider the following researc
 coups <- read_tsv("http://www.uky.edu/~clthyn2/coup_data/candidate_dataset.txt")
 ```
 
-## Create Functions
+## Try Functions
 
 ```{r}
 library(dplyr)
@@ -394,16 +394,70 @@ summarize_democracy_by_decade <- function(data, group_var = NULL, group_value = 
 }
 ```
 
-## Looping
+## Create Region and Continent Variables
 
 ```{r}
-countries <- democracy |>
-  distinct(country_name) |>
-  filter(!is.na(country_name)) |>
-  pull(country_name)
+library(countrycode)
 
-for (ctry in countries) {
-  country_profile(democracy, country = ctry) |>
-    print()
+democracy <- democracy |>
+  mutate(
+    continent = countrycode(
+      sourcevar = country_code,
+      origin = "iso3c",
+      destination = "continent"),
+    region = countrycode(
+      sourcevar = country_code,
+      origin = "iso3c",
+      destination = "region"))
+```
+
+## Use For Final Draft Checkpoint 2
+
+```{r}
+summarize_regimes <- function(regimes = c("Civilian dictatorship",
+                                          "Parliamentary democracy",
+                                          "Military dictatorship",
+                                          "Presidential democracy")) {
+  democracy_data |>
+    filter(regime_category %in% regimes) |>
+    group_by(regime_category) |>
+    summarize(
+      n = n(),
+      prop_demo = sum(is_democracy, na.rm = TRUE) / n,
+      prop_suffrage = sum(has_full_suffrage, na.rm = TRUE) / n,
+      prop_multiparty = sum(is_multiparty, na.rm = TRUE) / n,
+      prop_free_fair = sum(has_free_and_fair_election, na.rm = TRUE) / n,
+      prop_alternation = sum(has_alternation, na.rm = TRUE) / n
+    ) |>
+    gt() |>
+    cols_label(
+      regime_category = "Regime",
+      n = "Number of Observations",
+      prop_demo = "Democratic",
+      prop_suffrage = "Full Voting Rights",
+      prop_multiparty = "Multi-Party Elections",
+      prop_free_fair = "Free & Fair Elections",
+      prop_alternation = "Rotating Top Office"
+    ) |>
+    tab_style(
+      cell_text(weight = "bold"),
+      locations = cells_column_labels(everything())
+    ) |>
+    fmt_percent(columns = -c(n, regime_category)) |>
+    tab_caption(
+      caption = md("Percent of observations demonstrating democratic principals, by regime category")
+    ) |>
+    tab_spanner(
+      label = "Democratic Principals Represented (% Observations)",
+      columns = -c(n, regime_category)
+    ) |>
+    data_color(
+      columns = -c(n, regime_category),
+      palette = "Blues"
+    )
 }
+```
+
+```{r}
+summarize_regimes()
 ```
