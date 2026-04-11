@@ -1,0 +1,156 @@
+---
+title: "Frranchesca's Draft"
+format: 
+  html:
+      embed-resources: true
+editor: visual
+---
+
+# Checkpoint 1
+
+```{r steup}
+#| echo: false
+#| message: false
+
+library(tidyverse)
+library(gt)
+```
+
+```{r load in data}
+#| message: false
+
+democracy_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv')
+
+```
+
+## Data Context
+
+This dataset is based on the PACL dataset from J. A. Cheibub, J. Gandhi, and J. R. Vreeland. "Democracy and Dictatorship Revisited". In: Public Choice 143.1-2 (2009), pp. 67-101. DOI: 10.1007/s11127-009-9491-2.
+
+Each row represents a country and year. The columns describe the political system and leader of the country during the year. Regarding the system, the columns include it's specific regime category as defined by Cheibub, Ghandi and Vreeland (2010), additional indicator variables of certain, more general systems, and details of the election process as applicable. Regarding the leader, the columns include details such as their name, birth year, and gender, as well as details about their term as applicable.
+
+## Data Cleaning
+
+The cleaning process performed on this data included:
+
+-   Selecting and renaming relevant variables from the PACL dataset
+
+-   Handling NA's within the original election month variable, separating its month and year into two separate variables, and cleaning white spaces
+
+-   Recoding the electoral category from numbers to descriptive categories
+
+-   Converting variables of indexes, years, member counts, and the count of parliament chambers to numeric values
+
+-   Converting indicator variables to boolean/logical variables
+
+## Research Questions
+
+### With these data
+
+1.  How have the frequencies of different political systems changed over time?
+
+2.  How stable are the governments of newly independent countries (formally colonized)?
+
+3.  How do the democracies of countries that had previously experienced dictatorships differ from countries that had not?
+
+### With Supplemental Data
+
+1.  How many countries that had switched from dictatorships to democracies elect a relative of a previous dictator?
+
+2.  How do the economies of countries of different government systems compare?
+
+## Visualization Sketches
+
+![](images/map.jpg)
+
+![](images/scatterplot.jpg)
+
+# Checkpoint 2
+
+## Count of Regimes and Percent of Dictatorships Per Country
+
+*no new columns, requires custom function and iteration*
+```{r}
+
+count_regimes <- function(country) {
+
+  regimes <- democracy_data |>
+    filter(country_code == country) |>
+    arrange(year) |>
+    mutate(prev_regime = lag(regime_category)) |>
+    filter(year == min(year) | regime_category != prev_regime)
+    
+  nrow(regimes)
+  
+}
+
+count_dictatorships <- function(country) {
+
+  dictatorships <- democracy_data |>
+    filter(country_code == country) |>
+    arrange(year) |>
+    mutate(prev_regime = lag(regime_category)) |>
+    filter(year == min(year) | regime_category != prev_regime, regime_category_index >= 3)
+    
+  nrow(dictatorships)
+  
+}
+
+democracy_data |>
+  distinct(country_code, country_name) |>
+  mutate(n_regimes = map_dbl(country_code, count_regimes),
+         n_dicts = map_dbl(country_code, count_dictatorships),
+         prop_dict = n_dicts/n_regimes) |>
+  select(country_name, n_regimes, prop_dict) |>
+  arrange(desc(n_regimes)) |>
+  gt() |>
+  cols_label(country_name = "Country", 
+             n_regimes = "Number of Regimes",
+             prop_dict = "Proportion of Dictatorships") |>
+  tab_style(cell_text(weight = "bold"),
+            locations = cells_column_labels(everything())) |>
+  fmt_percent(columns = prop_dict) |>
+  data_color(prop_dict,
+             palette = "Blues") |>
+  tab_caption(caption = md("Counts of regimes per country, with the percent of regimes that were dictatorships."))
+
+
+```
+
+## Percent of Independent Countries Over the Years
+
+*new columns, requires custom function and iteration*
+```{r}
+
+is_not_ind <- function(regime_category_index, regime_category) {
+  
+  is.na(regime_category_index) | 
+    regime_category %in% c("Colony", 
+                           "British Overseas Territory")
+  
+}
+
+democracy_data |>
+  mutate(not_independent = map2_lgl(regime_category_index,
+                                    regime_category,
+                                    is_not_ind)) |>
+  group_by(year) |>
+  summarise(
+    ind_count = sum(!not_independent),
+    not_ind_count = sum(not_independent)
+    ) |>
+  mutate(prop_ind = ind_count/(ind_count + not_ind_count)) |>
+  select(year, prop_ind, ind_count, not_ind_count) |>
+  gt() |>
+  cols_label(year = "Year", 
+             prop_ind = "Proportion of Independent Countries", 
+             ind_count = "Number of Independent Countries",
+             not_ind_count = "Number of Non-Independent Countries") |>
+  tab_style(cell_text(weight = "bold"),
+            locations = cells_column_labels(everything())) |>
+  data_color(prop_ind,
+             palette = "Blues") |>
+  fmt_percent(columns = prop_ind) |>
+  tab_caption(caption = md("Yearly percent of recorded countries that were independent."))
+
+```
