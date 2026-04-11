@@ -205,3 +205,40 @@ democracy_data |>
 ```
 
 ## Modified data summaries
+
+### Percent of Independent Countries Over the Years
+
+```{r}
+
+is_not_ind <- function(regime_category_index, regime_category) {
+  
+  is.na(regime_category_index) | 
+    regime_category %in% c("Colony", 
+                           "British Overseas Territory")
+  
+}
+
+democracy_data |>
+  mutate(not_independent = map2_lgl(regime_category_index,
+                                    regime_category,
+                                    is_not_ind)) |>
+  group_by(year) |>
+  summarise(
+    ind_count = sum(!not_independent),
+    not_ind_count = sum(not_independent)
+    ) |>
+  mutate(prop_ind = ind_count/(ind_count + not_ind_count)) |>
+  select(year, prop_ind, ind_count, not_ind_count) |>
+  gt() |>
+  cols_label(year = "Year", 
+             prop_ind = "Proportion of Independent Countries", 
+             ind_count = "Number of Independent Countries",
+             not_ind_count = "Number of Non-Independent Countries") |>
+  tab_style(cell_text(weight = "bold"),
+            locations = cells_column_labels(everything())) |>
+  data_color(prop_ind,
+             palette = "Blues") |>
+  fmt_percent(columns = prop_ind) |>
+  tab_caption(caption = md("Yearly percent of recorded countries that were independent."))
+
+```

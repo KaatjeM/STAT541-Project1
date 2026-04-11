@@ -106,7 +106,7 @@ democracy_data |>
   gt() |>
   cols_label(country_name = "Country", 
              n_regimes = "Number of Regimes",
-             prop_dict = "Proportion of Dictatorships") |>
+             prop_dict = "Percent Dictatorship") |>
   tab_style(cell_text(weight = "bold"),
             locations = cells_column_labels(everything())) |>
   fmt_percent(columns = prop_dict) |>
