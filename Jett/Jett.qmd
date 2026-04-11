@@ -111,6 +111,8 @@ democracy_data <-
       as.logical
     )
   )
+
+democracy <- democracy_data
 ```
 
 The repository by Jon Harmon includes pre-specified data cleaning steps which execute the following actions:
@@ -154,3 +156,254 @@ By importing GDP and coup d'états data, we might consider the following researc
 ![](images/clipboard-742389028.jpeg)
 
 # Checkpoint 2
+
+## Gameplan
+
+1.  **`summarize_regime()`**
+
+    Compare democratic characteristics across regime categories, regions, or continents.
+
+2.  **`country_profile()`**\
+    Summarize one country at a time, then loop across countries externally.
+
+3.  **`summarize_democratic_score()`**\
+    Create a 0 to 4 democracy score and summarize it by group (e.g., region).
+
+4.  **`summarize_democracy_by_decade()`**\
+    Create decade column from year and summarize change over time.
+
+```{r}
+coups <- read_tsv("http://www.uky.edu/~clthyn2/coup_data/candidate_dataset.txt")
+```
+
+## Create Functions
+
+```{r}
+library(dplyr)
+library(gt)
+library(rlang)
+
+# 1) summarize_regime()
+
+summarize_regime <- function(data, group_var) {
+  group_var <- enquo(group_var)
+  group_name <- as_label(group_var)
+
+  summary_df <- data |>
+    filter(!is.na(!!group_var)) |>
+    group_by(!!group_var) |>
+    summarise(
+      n_country_years = n(),
+      pct_democracy = mean(is_democracy, na.rm = TRUE),
+      pct_full_suffrage = mean(has_full_suffrage, na.rm = TRUE),
+      pct_multiparty = mean(is_multiparty, na.rm = TRUE),
+      pct_free_fair = mean(has_free_and_fair_election, na.rm = TRUE),
+      pct_alternation = mean(has_alternation, na.rm = TRUE),
+      .groups = "drop"
+    ) |>
+    arrange(desc(pct_democracy))
+
+  summary_df |>
+    gt() |>
+    tab_caption(
+      md(paste0("**Democratic characteristics by ", group_name, "**"))
+    ) |>
+    cols_label(
+      !!group_name := md(paste0("**", group_name, "**")),
+      n_country_years = md("**Country-Years**"),
+      pct_democracy = md("**Democracy**"),
+      pct_full_suffrage = md("**Full Suffrage**"),
+      pct_multiparty = md("**Multiparty**"),
+      pct_free_fair = md("**Free & Fair Elections**"),
+      pct_alternation = md("**Alternation**")
+    ) |>
+    fmt_number(columns = n_country_years, decimals = 0) |>
+    fmt_percent(
+      columns = c(
+        pct_democracy,
+        pct_full_suffrage,
+        pct_multiparty,
+        pct_free_fair,
+        pct_alternation
+      ),
+      decimals = 1
+    )
+}
+
+
+# 2) country_profile()
+
+country_profile <- function(data, country, start_year = NULL, end_year = NULL) {
+
+  filtered_data <- data |>
+    filter(country_name == country)
+
+  if (!is.null(start_year)) {
+    filtered_data <- filtered_data |>
+      filter(year >= start_year)
+  }
+
+  if (!is.null(end_year)) {
+    filtered_data <- filtered_data |>
+      filter(year <= end_year)
+  }
+
+  summary_df <- filtered_data |>
+    summarise(
+      country_name = first(country_name),
+      first_year = min(year, na.rm = TRUE),
+      last_year = max(year, na.rm = TRUE),
+      n_country_years = n(),
+      pct_democracy = mean(is_democracy, na.rm = TRUE),
+      pct_full_suffrage = mean(has_full_suffrage, na.rm = TRUE),
+      pct_multiparty = mean(is_multiparty, na.rm = TRUE),
+      pct_free_fair = mean(has_free_and_fair_election, na.rm = TRUE),
+      pct_alternation = mean(has_alternation, na.rm = TRUE)
+    )
+
+  summary_df |>
+    gt() |>
+    tab_caption(md(paste0("**Country profile: ", country, "**"))) |>
+    cols_label(
+      country_name = md("**Country**"),
+      first_year = md("**First Year**"),
+      last_year = md("**Last Year**"),
+      n_country_years = md("**Country-Years**"),
+      pct_democracy = md("**Democracy**"),
+      pct_full_suffrage = md("**Full Suffrage**"),
+      pct_multiparty = md("**Multiparty**"),
+      pct_free_fair = md("**Free & Fair Elections**"),
+      pct_alternation = md("**Alternation**")
+    ) |>
+    fmt_number(
+      columns = c(first_year, last_year, n_country_years),
+      decimals = 0
+    ) |>
+    fmt_percent(
+      columns = c(
+        pct_democracy,
+        pct_full_suffrage,
+        pct_multiparty,
+        pct_free_fair,
+        pct_alternation
+      ),
+      decimals = 1
+    )
+}
+
+
+# 3) summarize_democratic_score()
+
+summarize_democratic_score <- function(data, group_var) {
+  group_var <- enquo(group_var)
+  group_name <- as_label(group_var)
+
+  summary_df <- data |>
+    mutate(
+      democratic_score =
+        coalesce(as.numeric(has_full_suffrage), 0) +
+        coalesce(as.numeric(is_multiparty), 0) +
+        coalesce(as.numeric(has_free_and_fair_election), 0) +
+        coalesce(as.numeric(has_alternation), 0)
+    ) |>
+    filter(!is.na(!!group_var)) |>
+    group_by(!!group_var) |>
+    summarise(
+      n_country_years = n(),
+      avg_democratic_score = mean(democratic_score, na.rm = TRUE),
+      median_democratic_score = median(democratic_score, na.rm = TRUE),
+      pct_perfect_score = mean(democratic_score == 4, na.rm = TRUE),
+      .groups = "drop"
+    ) |>
+    arrange(desc(avg_democratic_score))
+
+  summary_df |>
+    gt() |>
+    tab_caption(md(paste0("**Democratic score by ", group_name, "**"))) |>
+    cols_label(
+      !!group_name := md(paste0("**", group_name, "**")),
+      n_country_years = md("**Country-Years**"),
+      avg_democratic_score = md("**Average Score**"),
+      median_democratic_score = md("**Median Score**"),
+      pct_perfect_score = md("**Perfect Score (4/4)**")
+    ) |>
+    fmt_number(
+      columns = c(n_country_years, avg_democratic_score, median_democratic_score),
+      decimals = 1
+    ) |>
+    fmt_percent(columns = pct_perfect_score, decimals = 1)
+}
+
+
+# 4) summarize_democracy_by_decade()
+
+summarize_democracy_by_decade <- function(data, group_var = NULL, group_value = NULL) {
+
+  filtered_data <- data
+
+  if (!is.null(group_var) && !is.null(group_value)) {
+    group_var <- enquo(group_var)
+
+    filtered_data <- filtered_data |>
+      filter((!!group_var) == group_value)
+
+    caption_text <- paste0(
+      "**Democratic characteristics by decade for ",
+      as_label(group_var), ": ",
+      group_value,
+      "**"
+    )
+  } else {
+    caption_text <- "**Democratic characteristics by decade**"
+  }
+
+  summary_df <- filtered_data |>
+    mutate(decade = paste0(floor(year / 10) * 10, "s")) |>
+    group_by(decade) |>
+    summarise(
+      n_country_years = n(),
+      pct_democracy = mean(is_democracy, na.rm = TRUE),
+      pct_full_suffrage = mean(has_full_suffrage, na.rm = TRUE),
+      pct_multiparty = mean(is_multiparty, na.rm = TRUE),
+      pct_free_fair = mean(has_free_and_fair_election, na.rm = TRUE),
+      .groups = "drop"
+    ) |>
+    arrange(decade)
+
+  summary_df |>
+    gt() |>
+    tab_caption(md(caption_text)) |>
+    cols_label(
+      decade = md("**Decade**"),
+      n_country_years = md("**Country-Years**"),
+      pct_democracy = md("**Democracy**"),
+      pct_full_suffrage = md("**Full Suffrage**"),
+      pct_multiparty = md("**Multiparty**"),
+      pct_free_fair = md("**Free & Fair Elections**")
+    ) |>
+    fmt_number(columns = n_country_years, decimals = 0) |>
+    fmt_percent(
+      columns = c(
+        pct_democracy,
+        pct_full_suffrage,
+        pct_multiparty,
+        pct_free_fair
+      ),
+      decimals = 1
+    )
+}
+```
+
+## Looping
+
+```{r}
+countries <- democracy |>
+  distinct(country_name) |>
+  filter(!is.na(country_name)) |>
+  pull(country_name)
+
+for (ctry in countries) {
+  country_profile(democracy, country = ctry) |>
+    print()
+}
+```

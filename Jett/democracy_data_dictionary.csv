@@ -1,0 +1,42 @@
+variable,class,description,category,interpretation_notes
+country_name,character,Country name from PACL dataset,Identifier,Used for readability; not ideal for joins
+country_code,character,Three-letter ISO country code,Identifier,Best variable for merging datasets
+year,integer,Observation year,Time,Panel data index (country-year)
+regime_category_index,integer,Numeric regime classification (Cheibub et al. 2010),Regime,Use for modeling
+regime_category,character,Label for regime classification,Regime,Human-readable regime type
+is_democracy,logical,Binary democracy indicator (strict definition),Regime,"Requires elections, fairness, and turnover"
+electoral_category_index,integer,Electoral competitiveness scale (0–3),Regime,Captures degree of competition
+electoral_category,character,Label for electoral competitiveness,Regime,Readable version of index
+spatial_democracy,double,Average democracy of neighboring countries,Spatial,Captures regional diffusion
+spatial_electoral,double,Average electoral score of neighbors,Spatial,Regional competitiveness context
+is_monarchy,logical,Whether country is a hereditary monarchy,Leadership,Indicates dynastic rule
+monarch_name,character,Name of monarch,Leadership,Only relevant if monarchy
+monarch_accession_year,integer,Year monarch took power,Leadership,Tenure tracking
+monarch_birthyear,integer,Monarch birth year,Leadership,Demographic info
+is_female_monarch,logical,Whether monarch is female,Leadership,Gender indicator
+is_presidential,logical,Whether system is presidential,Institutions,Distinguishes system type
+president_name,character,Name of president,Leadership,Executive leader
+president_accesion_year,integer,Year president took office,Leadership,Note spelling issue
+president_birthyear,integer,President birth year,Leadership,Demographic info
+is_female_president,logical,Whether president is female,Leadership,Gender indicator
+is_interim_phase,logical,Multiple presidents in a year,Stability,Signals instability
+is_colony,logical,Whether country is a colony,Colonial,Colonial status
+colony_of,character,Colonial power,Colonial,Who owns the colony
+colony_administrated_by,character,Administrative authority,Colonial,Who governs locally
+is_communist,logical,Whether regime is communist/socialist,Ideology,Broad ideological indicator
+has_regime_change_lag,logical,Whether change recorded in next year,Timing,Late-year events shifted forward
+parliament_chambers,integer,Number of legislative chambers,Institutions,"1=uni, 2=bi, 3=tri"
+lower_house_members,integer,Members in lower house,Institutions,Size of chamber
+upper_house_members,integer,Members in upper house,Institutions,Size of chamber
+third_house_members,integer,Members in third house,Institutions,Rare cases
+has_proportional_voting,logical,Whether PR system used,Elections,Impacts party structure
+election_system,character,Type of electoral system,Elections,"Plurality, PR, mixed, etc."
+has_full_suffrage,logical,Whether full voting rights exist,Elections,Key democracy feature
+suffrage_restriction,character,Type of restriction if not full suffrage,Elections,"E.g., gender, race"
+is_multiparty,logical,Whether elections allow multiple parties,Elections,Competition indicator
+has_free_and_fair_election,logical,Whether elections are credible,Elections,Core democratic condition
+has_alternation,logical,Whether power changes hands,Elections,Strong democracy signal
+parliamentary_election_year,integer,Year of parliamentary election,Elections,Event timing
+election_month,character,Month of election,Elections,Cleaned text field
+election_year,integer,Year extracted from election date,Elections,Derived variable
+has_postponed_election,logical,Whether election was delayed,Elections,Signals disruption
