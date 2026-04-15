@@ -461,3 +461,7 @@ summarize_regimes <- function(regimes = c("Civilian dictatorship",
 ```{r}
 summarize_regimes()
 ```
+
+# Checkpoint 3
+
+Our World In Data: <https://ourworldindata.org/grapher/political-regime-amb-row?tab=table&time=1930..latest>
