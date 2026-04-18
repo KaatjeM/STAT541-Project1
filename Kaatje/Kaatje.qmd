@@ -150,7 +150,7 @@ WHR_tables <- target_headers |>
 
 ```{r}
 # Add year column
-add_year <- function(df, year) {
+clean_whr <- function(df, year) {
   if (year == 2016) {
     # Third row is the real column names
     colnames(df) <- as.character(unlist(df[3, ]))
@@ -175,7 +175,8 @@ add_year <- function(df, year) {
   if (year == 2013) {
     df |> 
       rename(country_name = Country,
-             `Overall rank` = `Rank[61]`)
+             `Overall rank` = `Rank[61]`,
+             Score = Happiness)
   } else if (year == 2016) {
     df |>
       rename(country_name = Country,
@@ -197,9 +198,55 @@ add_year <- function(df, year) {
   }
 }
 
+# runs function on the list of dataframes to clean
+# Different tables have different issues
 years <- c(2025, 2024, 2023, 2022, 2020, 2019, 2018, 2017, 2016, 2013)
-WHR_tables2 <- map2(WHR_tables, years, .f = add_year)
-WHR_tables2[[7]]
+WHR_tables2 <- map2(WHR_tables, years, .f = clean_whr)
+
 ```
 
 
+```{r}
+#Bind the rows of all the individual year tables
+WHR_table <- bind_rows(WHR_tables2)
+
+#Joins the world happiness data to the democracy data on country and year
+democracy_WHR_data <- democracy_data |>
+  left_join(WHR_table, 
+            by = c("country_name", 
+                   "year")) |>
+  mutate(across(`Overall rank`:`Generosity`, as.numeric))
+
+```
+
+```{r}
+# Table numeric summary of happiness score by regime.
+democracy_WHR_data |>
+  group_by(regime_category) |>
+  filter_out(is.na(Score)) |>
+  summarize(n=n(),
+            avg_happy = mean(Score, na.rm=TRUE),
+            sd_happy = sd(Score, na.rm=TRUE),
+            min_happy = min(Score, na.rm=TRUE),
+            med_happy = median(Score, na.rm=TRUE),
+            max_happy = max(Score, na.rm=TRUE)
+  ) |>
+  filter(n >= 10) |> 
+  arrange(desc(avg_happy)) |>
+  gt() |>
+  cols_label(regime_category = "Regime", 
+             n = "Number of Observations",
+             avg_happy = "Average Happiness Score",
+             sd_happy = "Standard Deviation Happiness Score",
+             min_happy = "Minimum Happiness Score",
+             med_happy = "Median Happiness Score",
+             max_happy = "Maximum Happiness Score"
+             ) |>
+  tab_style(cell_text(weight = "bold"),
+            locations = cells_column_labels(everything())) |>
+  tab_caption(caption = md("Happiness Score Summary by Regime Category")) |>
+  tab_footnote(footnote = "Happiness Score scraped from World Happiness Report 
+  Wikipedia page, Scores are out of 10") |>
+  data_color(columns = -c(n, regime_category),
+             palette = "Blues")
+```
