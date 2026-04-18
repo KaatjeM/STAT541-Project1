@@ -95,3 +95,111 @@ democracy_data |>
              palette = "Blues")
 ```
 
+
+## Checkpoint 3
+
+## Webscraping World Happiness Report
+
+link = https://en.wikipedia.org/wiki/World_Happiness_Report
+
+```{r}
+library(rvest)
+```
+
+```{r}
+#Reads the html from the World Happiness Report Wikipedia page
+WHR <- read_html("https://en.wikipedia.org/wiki/World_Happiness_Report")
+```
+
+```{r}
+# There are 39 tables, so we need to reduce to the ones we want
+WHR |> 
+  html_elements("table") |>
+  length()
+```
+
+```{r}
+# Get the header nodes
+headers <- WHR |> 
+  html_elements("h3")
+header_text <- headers |> 
+  html_text(trim = TRUE)
+
+# Creates the patterns to match the header nodes
+years <- 2013:2025
+targets <- paste0(years, " report")
+
+# Only keeps the report headedrs
+target_idx <- str_detect(header_text, str_c(targets, collapse = "|"))
+target_headers <- headers[target_idx]
+target_labels <- header_text[target_idx]
+
+
+# Function takes table following the specified header. 
+get_WHR_table <- function(header) {
+  header |>
+    html_element(xpath = "following::table[1]") |>
+    html_table(fill=TRUE)
+}
+
+# Retreive tables
+WHR_tables <- target_headers |>
+  map(get_WHR_table)
+```
+
+
+```{r}
+# Add year column
+add_year <- function(df, year) {
+  if (year == 2016) {
+    # Third row is the real column names
+    colnames(df) <- as.character(unlist(df[3, ]))
+    # drop the 2 rows with messy column names
+    df <- df[-c(1, 2, 3), 1:4]
+  } else {
+    # Second row is the real column names
+    colnames(df) <- as.character(unlist(df[2, ]))
+    # drop the 2 rows with messy column names
+    df <- df[-c(1, 2), ]
+    # drop extra empty columns
+    df <- df[, !is.na(colnames(df))]
+  }
+
+  # reset row names
+  rownames(df) <- NULL
+  # Add year as a column
+  df <- df |> 
+    mutate(year = as.integer(year))
+  
+  # Year specific problems
+  if (year == 2013) {
+    df |> 
+      rename(country_name = Country,
+             `Overall rank` = `Rank[61]`)
+  } else if (year == 2016) {
+    df |>
+      rename(country_name = Country,
+             `Overall rank` = `Overall Rank[58][59]`)
+  } else if (year ==  2017) {
+    df |> 
+      filter_out(Country %in% c("Europe[a]", "World")) |>
+      rename(country_name = Country,
+             `Overall rank` = `Overall Rank`)
+  } else if (year == 2023) {
+    df |> 
+      mutate(`Country or region` = str_remove_all(`Country or region`, 
+                                                   "\\*")) |> 
+      rename(country_name = `Country or region`) |> 
+      slice(-n())
+  } else {
+    df |> 
+      rename(country_name = `Country or region`)
+  }
+}
+
+years <- c(2025, 2024, 2023, 2022, 2020, 2019, 2018, 2017, 2016, 2013)
+WHR_tables2 <- map2(WHR_tables, years, .f = add_year)
+WHR_tables2[[7]]
+```
+
+
