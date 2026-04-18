@@ -570,6 +570,8 @@ datasets_tbl |>
   select(1:5)
 ```
 
+## Trying to pull one dataset by ID
+
 ```{r}
 test_id <- "0067067"
 
