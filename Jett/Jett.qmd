@@ -461,3 +461,123 @@ summarize_regimes <- function(regimes = c("Civilian dictatorship",
 ```{r}
 summarize_regimes()
 ```
+
+# Checkpoint 3
+
+Our World In Data: <https://ourworldindata.org/grapher/political-regime-amb-row?tab=table&time=1930..latest>
+
+World Bank: <https://datatopics.worldbank.org/world-development-indicators/themes/people.html>
+
+### Accessing World Bank API
+
+```{r}
+library(httr)
+library(tidyjson)
+library(jsonlite)
+library(tidyverse)
+```
+
+```{r}
+base_url <- "https://ddh-openapi.worldbank.org"
+```
+
+```{r}
+# Pull top 100 datasets from World Bank
+
+datasets <- GET(str_c(base_url, "/datasets?skip=0&top=100"))
+```
+
+```{r}
+# Identify column names
+
+datasets_txt <- content(datasets,
+                        as = "text",
+                        encoding = "UTF-8")
+
+datasets_parsed <- fromJSON(datasets_txt)
+
+names(datasets_parsed)
+str(datasets_parsed, max.level = 1)
+```
+
+```{r}
+datasets_tbl <- datasets |>
+  content(as = "text", encoding = "UTF-8") |>
+  fromJSON() |>
+  pluck("data")
+
+datasets_tbl |>
+  select(1:5)
+```
+
+The dataset names seem ambiguous, so let's try looking at "collections" instead.
+
+```{r}
+collections <- GET(str_c(base_url, "/collections"))
+
+collections_txt <- content(collections,
+                           as = "text",
+                           encoding = "UTF-8")
+
+collections_parsed <- fromJSON(collections_txt)
+
+names(collections_parsed)
+str(collections_parsed, max.level = 1)
+
+collections |>
+  content(as = "text", encoding = "UTF-8") |>
+  fromJSON() |>
+  pluck("collection_title")
+```
+
+```{r}
+collections |>
+  content(as = "text", encoding = "UTF-8") |>
+  fromJSON() |>
+  filter(collection_title == "World Development Report 2022") |>
+  pull(collection_id)
+```
+
+## Placeholder
+
+```{r}
+# Pull top 100 datasets from World Bank
+
+datasets <- GET(str_c(base_url, "/datasets?skip=0&top=1000"))
+datasets
+```
+
+```{r}
+# Identify column names
+
+datasets_txt <- content(datasets,
+                        as = "text",
+                        encoding = "UTF-8")
+
+datasets_parsed <- fromJSON(datasets_txt)
+
+names(datasets_parsed)
+str(datasets_parsed, max.level = 1)
+```
+
+```{r}
+datasets_tbl <- datasets |>
+  content(as = "text", encoding = "UTF-8") |>
+  fromJSON() |>
+  pluck("data")
+
+datasets_tbl |>
+  select(1:5)
+```
+
+## Trying to pull one dataset by ID
+
+```{r}
+test_id <- "0067067"
+
+dataset_meta <- GET(str_c(base_url, "/datasets/", test_id)) |>
+  content(as = "text", encoding = "UTF-8") |>
+  fromJSON()
+
+names(dataset_meta)
+```
