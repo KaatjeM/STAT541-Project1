@@ -581,3 +581,13 @@ dataset_meta <- GET(str_c(base_url, "/datasets/", test_id)) |>
 
 names(dataset_meta)
 ```
+
+## Data Descriptions
+
+### World Happiness Report
+
+With the first World Happiness report released on April 1st of 2012 by the United Nations General Assembly, this report has now captured self-perception data on global happiness for a near-consecutive 13 years. Today, the survey is supported by the University of Oxford and Gallup and represents over 140 countries. The report was established by the United Nations with the purpose of "giv\[ing\] more importance to happiness and well-being in determining how to achieve and measure social and economic development" ([World Happiness Report](https://www.worldhappiness.report/about/)). Each year, more than 100,000 people take the survey and are asked a happiness ranking question that is translated into their native language.
+
+### World Bank Group
+
+World Bank Group is a collection of internationally-operating organizations that aim to reduce global poverty through sustainable development and financing. Their operations and mission are highly data-driven, and they provide a breadth of open-source, global welfare data to the public via their API. Most datasets date back several decades, represent hundreds of countries, and vary on completeness. Datasets associated with their products and services (e.g., lending portfolios, asset management) are created and updated internally. Other global development data are sourced via World Bank partners, including governments, international agencies, regional development banks, donors, and others. We accessed country-level data on population, life-expectancy, and education-related variables.
