@@ -24,7 +24,7 @@ The dataset is read in from Tidy Tuesday on GitHub and was curated by Jon Harmon
 
 The data describes the regime types of countries around the world between the years 1950 and 2020. Each observation (row) is a country and year and contains information about that country's government regime in said year. Many of the variables recorded are booleans that indicate the political system or political rights of the country such as `is_communist` or `is_presidential`.
 
-These data is important to measure and evaluate the differences across regimes, and evaluate changes in democracies on a global scale.
+These data are important to measure and evaluate the differences across regimes, and evaluate changes in democracies on a global scale.
 
 ## Data Cleaning
 
