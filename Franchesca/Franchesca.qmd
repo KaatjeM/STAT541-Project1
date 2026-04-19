@@ -154,3 +154,176 @@ democracy_data |>
   tab_caption(caption = md("Yearly percent of recorded countries that were independent."))
 
 ```
+
+# Checkpoint 3
+
+
+# World Bank variables of interest
+
+**Population**
+- Total population SP.POP.TOTL
+- Population growth SP.POP.GROW
+- Birth rate SP.DYN.CBRT.IN
+- Death rate SP.DYN.CDRT.IN
+- Life expectancy male SP.DYN.LE00.MA.IN
+- Life expectancy female SP.DYN.LE00.FE.IN
+
+**Education**
+- School enrollment primary SE.PRM.ENRR
+- School enrollment secondary SE.SEC.ENRR
+- School enrollment tertiary SE.TER.ENRR
+
+```{r}
+library(httr)
+library(tidyjson)
+library(jsonlite)
+library(tidyverse)
+library(glue)
+```
+
+```{r}
+base_url <- "https://ddh-openapi.worldbank.org"
+```
+
+```{r}
+# Pull top 100 datasets from World Bank
+
+datasets <- GET(str_c(base_url, "/datasets?skip=0&top=100"))
+```
+
+```{r}
+# Identify column names
+
+datasets_txt <- content(datasets,
+                        as = "text",
+                        encoding = "UTF-8")
+
+datasets_parsed <- fromJSON(datasets_txt)
+
+names(datasets_parsed)
+str(datasets_parsed, max.level = 1)
+```
+
+```{r}
+datasets_tbl <- datasets |>
+  content(as = "text", encoding = "UTF-8") |>
+  fromJSON() |>
+  pluck("data")
+
+datasets_tbl |>
+  select(1:5)
+```
+
+The dataset names seem ambiguous, so let's try looking at "collections" instead.
+
+```{r}
+collections <- GET(str_c(base_url, "/collections"))
+
+collections_txt <- content(collections,
+                           as = "text",
+                           encoding = "UTF-8")
+
+collections_parsed <- fromJSON(collections_txt)
+
+names(collections_parsed)
+str(collections_parsed, max.level = 1)
+
+collections |>
+  content(as = "text", encoding = "UTF-8") |>
+  fromJSON() |>
+  pluck("collection_title")
+```
+
+```{r}
+collections |>
+  content(as = "text", encoding = "UTF-8") |>
+  fromJSON() |>
+  filter(collection_title == "World Development Report 2022") |>
+  pull(collection_id)
+```
+
+## Placeholder
+
+```{r}
+
+get_indicator <- function(country_code, indicator_code) {
+  
+  url <- glue("https://api.worldbank.org/v2/country/{country_code}/indicator/{indicator_code}?format=json&per_page=100")
+  
+  if(httr::status_code(GET(url)) == 200){
+  
+  json <- GET(url) |>
+    (\(x) x$content)() |>
+    rawToChar() |>
+    fromJSON()
+  
+    if (length(json) < 2 || is.null(json[[2]])) {
+      return(NULL)
+    }
+  
+    if(is.data.frame(json[[2]])) {
+      indicator_name = str_to_snake(json[[2]]$indicator$value[1])
+      
+      json[[2]] |>
+      select(country_code = countryiso3code, 
+             year = date, 
+             value) |>
+      mutate(year = as.integer(year),
+             indicator = indicator_name)
+    }
+    else{
+      return(NULL)
+    }
+  }
+  else{
+    return(NULL)
+  }
+}
+
+```
+
+```{r}
+country_codes <- democracy_data$country_code |>
+  unique()
+
+indicators <- c("SP.POP.TOTL",
+                "SP.POP.GROW",
+                "SP.DYN.CBRT.IN",
+                "SP.DYN.CDRT.IN",
+                "SP.DYN.LE00.MA.IN",
+                "SP.DYN.LE00.FE.IN",
+                "SE.PRM.ENRR",
+                "SE.SEC.ENRR",
+                "SE.TER.ENRR")
+
+people_data <- list()
+
+for (c in country_codes) {
+  for (i in indicators) {
+
+    temp <- get_indicator(c, i)
+
+    if (!is.null(temp)) {
+      people_data[[length(people_data) + 1]] <- temp
+    }
+  }
+}
+
+people <- bind_rows(people_data)
+
+```
+
+```{r}
+people <- people |>
+  pivot_wider(names_from = indicator,
+              values_from = value)
+
+democracy_data |>
+  left_join(
+    people,
+    by = c("country_code", "year")
+  )
+```
+
+
+
