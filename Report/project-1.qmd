@@ -548,6 +548,8 @@ library(glue)
 
 ```{r}
 
+# Create function that accesses country-level variable from World Bank API
+
 get_indicator <- function(country_code, indicator_code) {
   
   url <- glue("https://api.worldbank.org/v2/country/{country_code}/indicator/{indicator_code}?format=json&per_page=100")
@@ -585,6 +587,9 @@ get_indicator <- function(country_code, indicator_code) {
 ```
 
 ```{r}
+
+# Create vectors for unique country codes and variables of interest based on World Bank variable codes
+
 country_codes <- democracy_data$country_code |>
   unique()
 
@@ -597,6 +602,8 @@ indicators <- c("SP.POP.TOTL",
                 "SE.PRM.ENRR",
                 "SE.SEC.ENRR",
                 "SE.TER.ENRR")
+
+# Iterate function over countries and variables of interest
 
 people_data <- list()
 
@@ -621,10 +628,93 @@ people <- people |>
   pivot_wider(names_from = indicator,
               values_from = value)
 
-democracy_data <- democracy_data |>
+# Join people data, happiness data, and original data
+
+democracy_data <- democracy_WHR_data |>
   left_join(
     people,
     by = c("country_code", "year")
   )
 
 ```
+
+```{r}
+#| message: false
+
+# Create set of "default regimes" which consist of the top five most common
+
+default_regimes <- c(
+  "Parliamentary democracy",
+  "Presidential democracy",
+  "Mixed democratic",
+  "Civilian dictatorship",
+  "Military dictatorship"
+)
+
+# Create graph of life expectancy over time by regime category (top 5)
+
+# This data wrangling step allows for the color gradient to match the
+# life expectancy order and computes the averages
+
+plot_data <- democracy_data |>
+  filter(regime_category %in% default_regimes) |>
+  mutate(
+    avg_life_expectancy = (
+      life_expectancy_at_birth_male_years +
+      life_expectancy_at_birth_female_years) / 2) |>
+  filter(
+    !is.na(year),
+    !is.na(avg_life_expectancy)) |>
+  group_by(year, regime_category) |>
+  summarize(
+    n = n(),
+    avg_life_expectancy = mean(avg_life_expectancy, na.rm = TRUE))
+
+regime_order <- plot_data |>
+  filter(year == 2020) |>
+  arrange(avg_life_expectancy) |>
+  pull(regime_category)
+
+plot_data |>
+  mutate(
+    regime_category = factor(regime_category, levels = regime_order)) |>
+  ggplot(aes(x = year, y = avg_life_expectancy, color = regime_category)) +
+  geom_line(linewidth = 1) +
+  scale_color_manual(
+    values = c(
+      "#c6dbef",
+      "#9ecae1",
+      "#6baed6",
+      "#3182bd",
+      "#08519c")) +
+  labs(
+    title = "Average Life Expectancy over Time by Regime Category",
+    x = "Year",
+    y = "Average Life Expectancy",
+    color = "Regime Category") +
+  theme_minimal()
+```
+
+```{r}
+democracy_data |>
+  filter(
+    regime_category %in% default_regimes,
+    !is.na(school_enrollment_secondary_gross)
+  ) |>
+  group_by(regime_category) |>
+  filter(n() >= 10) |>
+  ungroup() |>
+  ggplot(aes(x = regime_category, y = school_enrollment_secondary_gross, fill = regime_category)) +
+  geom_boxplot() +
+  labs(
+    title = "Secondary School Enrollment by Regime Category",
+    x = "Regime Category",
+    y = "Secondary School Enrollment (Gross)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "none"
+  )
+```
+
