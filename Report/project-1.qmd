@@ -695,26 +695,4 @@ plot_data |>
   theme_minimal()
 ```
 
-```{r}
-democracy_data |>
-  filter(
-    regime_category %in% default_regimes,
-    !is.na(school_enrollment_secondary_gross)
-  ) |>
-  group_by(regime_category) |>
-  filter(n() >= 10) |>
-  ungroup() |>
-  ggplot(aes(x = regime_category, y = school_enrollment_secondary_gross, fill = regime_category)) +
-  geom_boxplot() +
-  labs(
-    title = "Secondary School Enrollment by Regime Category",
-    x = "Regime Category",
-    y = "Secondary School Enrollment (Gross)"
-  ) +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),
-    legend.position = "none"
-  )
-```
 
