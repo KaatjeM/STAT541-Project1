@@ -117,23 +117,23 @@ democracy <- democracy_data
 
 The repository by Jon Harmon includes pre-specified data cleaning steps which execute the following actions:
 
--   Imports data
+- Imports data
 
--   Cleans column names (lower, snake case)
+- Cleans column names (lower, snake case)
 
--   Selects and renames columns (41 of 46 original columns)
+- Selects and renames columns (41 of 46 original columns)
 
--   Recodes "?" values to `NA` in `election_month`
+- Recodes "?" values to `NA` in `election_month`
 
--   Splits `election_month` into `election_month` (containing only the month) and `election_year` (containing only the year)
+- Splits `election_month` into `election_month` (containing only the month) and `election_year` (containing only the year)
 
--   Creates a recoded version of `electoral_category_index` called `electoral_category` with a plain-text naming convention (i.e., no elections, single-party elections, non-democratic multi-party elections, and democratic elections)
+- Creates a recoded version of `electoral_category_index` called `electoral_category` with a plain-text naming convention (i.e., no elections, single-party elections, non-democratic multi-party elections, and democratic elections)
 
--   Removes whitespace from `election_month`
+- Removes whitespace from `election_month`
 
--   Converts any column ending with "index*"* or *"*members", or containing "year", to integers
+- Converts any column ending with "index*"* or *"*members", or containing "year", to integers
 
--   Converts any column starting with "is\_" or "has\_" to logicals
+- Converts any column starting with "is\_" or "has\_" to logicals
 
 ## Research Questions
 
@@ -591,3 +591,41 @@ With the first World Happiness report released on April 1st of 2012 by the Unite
 ### World Bank Group
 
 World Bank Group is a collection of internationally-operating organizations that aim to reduce global poverty through sustainable development and financing. Their operations and mission are highly data-driven, and they provide a breadth of open-source, global welfare data to the public via their API. Most datasets date back several decades, represent hundreds of countries, and vary on completeness. Datasets associated with their products and services (e.g., lending portfolios, asset management) are created and updated internally. Other global development data are sourced via World Bank partners, including governments, international agencies, regional development banks, donors, and others. We accessed country-level data on population, life-expectancy, and education-related variables.
+
+# Checkpoint 4
+
+Reference: <https://r-spatial.org/r/2018/10/25/ggplot2-sf.html>
+
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+theme_set(theme_bw())
+```
+
+```{r}
+democracy <- read_csv(here("Data", "democracy.csv"))
+```
+
+```{r}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+world |>
+  ggplot() +
+  geom_sf()
+  # theme(panel.background = element_rect(fill = "aliceblue"))
+```
+
+```{r}
+combined <- world |>
+  left_join(democracy, by = c("adm0_a3" = "country_code"))
+```
+
+```{r}
+combined |>
+  ggplot() +
+  geom_sf(aes(fill = is_democracy))
+```
