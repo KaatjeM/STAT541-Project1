@@ -701,6 +701,7 @@ plot_data |>
     color = "Regime Category") +
   theme_minimal()
 ```
+
 # Checkpoint 4
 
 ```{r}
@@ -743,7 +744,6 @@ world_democracy |>
 ## Visualization #2
 
 ```{r}
-
+# placeholder for sankey plot
 ```
-
 
