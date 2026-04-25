@@ -594,6 +594,8 @@ World Bank Group is a collection of internationally-operating organizations that
 
 # Checkpoint 4
 
+## Map Visualization
+
 Reference: <https://r-spatial.org/r/2018/10/25/ggplot2-sf.html>
 
 ```{r}
@@ -645,4 +647,47 @@ combined |>
   theme_bw() +
   theme(legend.position = "none",
         plot.title = element_markdown())
+```
+
+## Model - Time Until Country Returns To Democracy
+
+This survival analysis will assess the cumulative probability of *returning* to a democratic regime for those that converted from a democratic regime to a non-democratic regime (e.g., by coup d'état).
+
+We'll call these non-democratic intervals "spells" and measure the time until non-democratic spells are broken. Note that some countries are left-censored since we only have data going back to 1950 – those countries may have been non-democratic prior to 1950 and the model doesn't reflect this.
+
+```{r}
+survival <- democracy |>
+  arrange(country_code, year) |>
+  group_by(country_code) |>
+  mutate(
+    lost_democracy = is_democracy == FALSE & lag(is_democracy, default = TRUE),
+    spell_id = cumsum(lost_democracy),
+    next_is_democracy = lead(is_democracy)) |>
+  filter(is_democracy == FALSE) |>
+  group_by(country_code, spell_id) |>
+  summarize(
+    start_year = min(year),
+    end_year = max(year),
+    returned_to_democracy = any(next_is_democracy == TRUE, na.rm = TRUE),
+    time = end_year - start_year + 1,
+    .groups = "drop")
+```
+
+```{r}
+library(survival)
+
+km <- survfit(Surv(time, returned_to_democracy) ~ 1,
+              data = survival)
+
+plot(km,
+     xlab = "Years Since Losing Democracy",
+     ylab = "")
+
+title(main = "Prob. of Remaing Non-Democratic Decreases Over Time", adj = 0)
+```
+
+```{r}
+# under construction
+cox <- coxph(Surv(time, returned_to_democracy) ~ log_gdp_per_capita + region,
+             data = survival)
 ```
