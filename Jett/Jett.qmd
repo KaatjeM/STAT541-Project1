@@ -629,3 +629,20 @@ combined |>
   ggplot() +
   geom_sf(aes(fill = is_democracy))
 ```
+
+```{r}
+library(ggtext)
+
+combined |>
+  ggplot() +
+  geom_sf(aes(fill = factor(is_democracy,
+                            levels = c(FALSE, TRUE),
+                            labels = c("No", "Yes"))), linewidth = 0.05) +
+  labs(title = "<span style='color:steelblue'><b>Democratic</b></span> and <span style='color:#ee6b6e'><b>Non-Democratic</b></span> Regimes Around the Globe",
+       alt = "World map showing countries colored by regime type. Democratic countries are shown in blue, and non-democratic countries are shown in red.") +
+  scale_fill_manual(values = c("No" = "#ee6b6e",
+                               "Yes" = "steelblue")) +
+  theme_bw() +
+  theme(legend.position = "none",
+        plot.title = element_markdown())
+```
