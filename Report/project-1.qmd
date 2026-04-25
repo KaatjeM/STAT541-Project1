@@ -557,7 +557,6 @@ library(glue)
 ```
 
 ```{r}
-
 # Create function that accesses country-level variable from World Bank API
 
 get_indicator <- function(country_code, indicator_code) {
@@ -597,7 +596,6 @@ get_indicator <- function(country_code, indicator_code) {
 ```
 
 ```{r}
-
 # Create vectors for unique country codes and variables of interest based on World Bank variable codes
 
 country_codes <- democracy_data$country_code |>
@@ -633,7 +631,6 @@ people <- bind_rows(people_data)
 ```
 
 ```{r}
-
 people <- people |>
   pivot_wider(names_from = indicator,
               values_from = value)
@@ -703,6 +700,50 @@ plot_data |>
     y = "Average Life Expectancy",
     color = "Regime Category") +
   theme_minimal()
+```
+# Checkpoint 4
+
+```{r}
+# Load in packages needed for map geometries
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(ggtext)
+
+# Load in master dataset from Checkpoints 1-3
+# We saved this locally to avoid re-scraping on every render
+democracy <- read_csv(here("Data", "democracy.csv"))
+
+# Save global map geometries
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+# Combine democracy data with global map geometries
+world_democracy <- world |>
+  left_join(democracy, by = c("adm0_a3" = "country_code"))
+```
+
+## Visualization #1
+
+```{r}
+world_democracy |>
+  ggplot() +
+  geom_sf(aes(fill = factor(is_democracy,
+                            levels = c(FALSE, TRUE),
+                            labels = c("No", "Yes"))),
+          linewidth = 0.05) +
+  labs(title = "<span style='color:steelblue'><b>Democratic</b></span> and <span style='color:#ee6b6e'><b>Non-Democratic</b></span> Regimes Around the Globe",
+       alt = "World map showing countries colored by regime type. Democratic countries are shown in blue, and non-democratic countries are shown in red.") +
+  scale_fill_manual(values = c("No" = "#ee6b6e",
+                               "Yes" = "steelblue")) +
+  theme_bw() +
+  theme(legend.position = "none",
+        plot.title = element_markdown())
+```
+
+## Visualization #2
+
+```{r}
+
 ```
 
 
