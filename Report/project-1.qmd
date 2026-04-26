@@ -744,6 +744,89 @@ world_democracy |>
 ## Visualization #2
 
 ```{r}
-# placeholder for sankey plot
+
+# load in packages needed for sankey plot
+
+library(ggalluvial)
+library(ggfittext)
+library(paletteer)
+
+```
+
+```{r}
+
+# create frequency data for sankey plot
+
+regime_change_freq <- democracy |>
+  arrange(country_code, year) |>
+  group_by(country_code) |>
+  mutate(post_regime = lead(regime_category)) |>
+  filter((year == min(year) 
+          & regime_category != post_regime) | 
+           regime_category != post_regime)  |>
+  mutate(regime_category = ifelse(regime_category %in% c("Parliamentary democracy",
+                                                         "Mixed democratic",
+                                                         "Presidential democracy",
+                                                         "Civilian dictatorship",
+                                                         "Military dictatorship",
+                                                         "Royal dictatorship"),
+                                  str_to_title(regime_category),
+                                  "Other"),
+         post_regime = ifelse(post_regime %in% c("Parliamentary democracy",
+                                                 "Mixed democratic",
+                                                 "Presidential democracy",
+                                                 "Civilian dictatorship",
+                                                 "Military dictatorship",
+                                                 "Royal dictatorship"),
+                              str_to_title(post_regime),
+                              "Other")) |>
+  ungroup(country_code) |>
+  count(regime_category, post_regime)
+
+
+# reorder regime categories from democratic to dictatorial
+
+regime_change_freq <- regime_change_freq |>
+  mutate(regime_category  = factor(regime_category,
+                                   levels = c("Royal Dictatorship",
+                                              "Military Dictatorship",
+                                              "Civilian Dictatorship",
+                                              "Presidential Democracy",
+                                              "Mixed Democratic",
+                                              "Parliamentary Democracy",
+                                              "Other")),
+         post_regime = factor(post_regime,
+                              levels = c("Royal Dictatorship",
+                                         "Military Dictatorship",
+                                         "Civilian Dictatorship",
+                                         "Presidential Democracy",
+                                         "Mixed Democratic",
+                                         "Parliamentary Democracy",
+                                         "Other")))
+
+```
+
+```{r}
+
+# create sankey plot
+
+regime_change_freq |>
+  ggplot(aes(y = n,
+             axis1 = regime_category,
+             axis2 = post_regime)) +
+  geom_alluvium(aes(fill = as.factor(regime_category))) +
+  geom_stratum() +
+  geom_fit_text(stat = "stratum",
+                aes(label = str_wrap(after_stat(stratum), width = 12)),
+                width = 0.25) +
+  theme_minimal() +
+  labs(title = "Regime Changes",
+       x = "Regime",
+       y = "Frequency",
+       fill = "Old Regime",
+       alt = "Sankey plot showing changes in political regime categories from old to new. Flows are colored by the old, or itinital, regime of the change. Regime categories for both axes include Royal Dictatorship, Military Dictatorship, Civilian Dictatorship, Presidential Democracy, Mixed Democracy, and Parliamentary Democracy (from least to most democratic). Each axis also includes an Other category comprised of non sovereign nations. Most changes to democracies are from military or civilian dictatorships.") +
+  scale_x_discrete(limits = c("Old Regime", "New Regime")) +
+  scale_fill_manual(values = paletteer_d("colorblindr::OkabeIto_black"))
+
 ```
 
