@@ -6,11 +6,13 @@ format: html
 ```{r}
 #| output: false
 library(tidyverse)
+library(here)
 library(gt)
 democracy_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv')
+democracy <- read_csv(here("Data", "democracy.csv"))
 ```
 
-
+## Checkpoint 1
 ```{r}
 regime_summ <- function(df) {
   if (is.data.frame(df)) {
@@ -43,6 +45,7 @@ democracy_data |>
             ) |> View()
 ```
 
+## Checkpoint 2
 ### Forms of Governance by World Region
 
 *new column for region, no iteration or custom function*
@@ -98,7 +101,7 @@ democracy_data |>
 
 ## Checkpoint 3
 
-## Webscraping World Happiness Report
+### Webscraping World Happiness Report
 
 link = https://en.wikipedia.org/wiki/World_Happiness_Report
 
@@ -250,3 +253,23 @@ democracy_WHR_data |>
   data_color(columns = -c(n, regime_category),
              palette = "Blues")
 ```
+
+
+## Checkpoint 4
+
+```{r}
+democracy |>
+  ggplot(aes(x = year,
+         y = population_total,
+         color=is_democracy)
+         ) +
+  geom_point()
+
+democracy |>
+  ggplot(aes(x = year,
+         y = population_total,
+         color=as.factor(regime_category_index))
+         ) +
+  geom_point()
+```
+
