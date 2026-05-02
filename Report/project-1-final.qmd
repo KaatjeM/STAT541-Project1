@@ -734,16 +734,23 @@ Table 3, displays the percent of observations (country and year) in this dataset
 #| label: happiness-by-regime-table
 
 # Table numeric summary of happiness score by regime.
+happiness_dist <- function(regime) {
+  democracy |>
+    filter(regime_category == regime) |>
+    filter_out(is.na(score)) |>
+    summarize(n=n(),
+              avg_happy = mean(score),
+              sd_happy = sd(score),
+              min_happy = min(score),
+              med_happy = median(score),
+              max_happy = max(score)
+    )
+}
+
 democracy |>
-  group_by(regime_category) |>
-  filter_out(is.na(score)) |>
-  summarize(n=n(),
-            avg_happy = mean(score, na.rm=TRUE),
-            sd_happy = sd(score, na.rm=TRUE),
-            min_happy = min(score, na.rm=TRUE),
-            med_happy = median(score, na.rm=TRUE),
-            max_happy = max(score, na.rm=TRUE)
-  ) |>
+  distinct(regime_category) |>
+  mutate(map_df(.x = regime_category,
+                .f = happiness_dist)) |>
   filter(n >= 10) |> 
   arrange(desc(avg_happy)) |>
   gt() |>
