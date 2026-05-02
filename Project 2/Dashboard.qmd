@@ -1,0 +1,13 @@
+---
+title: "Government Types"
+format: 
+  dashboard:
+    orientation: columns
+    nav-buttons: [github]
+    github: "https://github.com/KaatjeM/STAT541-Project1"
+    embed-resources: true
+logo: images/courthouse.png
+logo-alt: "Courthouse icon."
+theme: cosmo
+---
+
