@@ -5,7 +5,7 @@
   "metadata": {
     "appmode": "static",
     "primary_rmd": null,
-    "primary_html": "Report/project-1.html",
+    "primary_html": "Franchesca/Franchesca.html",
     "content_category": null,
     "has_parameters": false
   },
@@ -14,6 +14,93 @@
     "Data/democracy.csv": {
       "checksum": "6c6aa8c3db7476e345dbaa80f9a96a24"
     },
+    "Franchesca/Franchesca.html": {
+      "checksum": "800adf3389cc3571a21addcaa8de18cd"
+    },
+    "Franchesca/Franchesca.qmd": {
+      "checksum": "8b1340db1056da215b22d6c269c21775"
+    },
+    "Franchesca/images/map.jpg": {
+      "checksum": "130c998e1dbff5809eb2667cb9c917a1"
+    },
+    "Franchesca/images/scatterplot.jpg": {
+      "checksum": "9de0bcd5d8b637b7b64a7a02905a7a73"
+    },
+    "Jett/coup_codebook.pdf": {
+      "checksum": "f5936d9c59238e84b84d9a3a9b0021e8"
+    },
+    "Jett/democracy_data_dictionary.csv": {
+      "checksum": "2d58cf6d2aed2d1685d1535c66dc0480"
+    },
+    "Jett/images/clipboard-27102202.jpeg": {
+      "checksum": "4020dfb37eebc44102c04259659aadbe"
+    },
+    "Jett/images/clipboard-742389028.jpeg": {
+      "checksum": "97607a17d625691a3ce5d1688523d44f"
+    },
+    "Jett/Jett.qmd": {
+      "checksum": "880ea88253c037dbf7864a0aa0ddd480"
+    },
+    "Kaatje/Kaatje.html": {
+      "checksum": "51afe7d26f9dea7d2da71fe22b591585"
+    },
+    "Kaatje/Kaatje.qmd": {
+      "checksum": "1e1134ba7ba5ddf5d87ff7d7bca16415"
+    },
+    "Kaatje/Kaatje_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css": {
+      "checksum": "9e3ffae467580fdb927a41352e75a2e0"
+    },
+    "Kaatje/Kaatje_files/libs/bootstrap/bootstrap-icons.css": {
+      "checksum": "886da841d7421705f715f600c5ff11bb"
+    },
+    "Kaatje/Kaatje_files/libs/bootstrap/bootstrap-icons.woff": {
+      "checksum": "efe54401ef52214fd3b701e23ff88c5f"
+    },
+    "Kaatje/Kaatje_files/libs/bootstrap/bootstrap.min.js": {
+      "checksum": "e2b09c06f0e714b6144a6788a28e3950"
+    },
+    "Kaatje/Kaatje_files/libs/clipboard/clipboard.min.js": {
+      "checksum": "15f52a1ee547f2bdd46e56747332ca2d"
+    },
+    "Kaatje/Kaatje_files/libs/quarto-html/anchor.min.js": {
+      "checksum": "91bcf6cd1fd88fec3f109811e5fc3546"
+    },
+    "Kaatje/Kaatje_files/libs/quarto-html/axe/axe-check.js": {
+      "checksum": "b4f6a44157bfe20b68b69aabf2f8125d"
+    },
+    "Kaatje/Kaatje_files/libs/quarto-html/popper.min.js": {
+      "checksum": "3a4a291ccf3f1ea0f82b641542fd3827"
+    },
+    "Kaatje/Kaatje_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css": {
+      "checksum": "7b89279ff1a6dce999919e0e67d4d9ec"
+    },
+    "Kaatje/Kaatje_files/libs/quarto-html/quarto.js": {
+      "checksum": "a65a7780c10232b6515cdfb8beaaa221"
+    },
+    "Kaatje/Kaatje_files/libs/quarto-html/tabsets/tabsets.js": {
+      "checksum": "e8d6a8862b33ccc461f8fd532e05b365"
+    },
+    "Kaatje/Kaatje_files/libs/quarto-html/tippy.css": {
+      "checksum": "ebd6f8ce46a677e1a4f5f8a8317109a9"
+    },
+    "Kaatje/Kaatje_files/libs/quarto-html/tippy.umd.min.js": {
+      "checksum": "d828775275749701b48bd9d958814111"
+    },
+    "Project 2/Dashboard.html": {
+      "checksum": "76571780ba4abe2c712a114b680eab50"
+    },
+    "Project 2/Dashboard.qmd": {
+      "checksum": "e5997b2ede72e96ff027e6e25403180d"
+    },
+    "Project 2/images/cal_poly_email_signature_logo.svg": {
+      "checksum": "25aa4f268c25c97da903a71f4e9633f2"
+    },
+    "Project 2/images/courthouse.png": {
+      "checksum": "e0fbe5c48ffd7f7e6fef0c2d9173c10d"
+    },
+    "Project 2/images/cp-shield-full-600x330.avif": {
+      "checksum": "e9b8181249c8d786e45a68f71b24a874"
+    },
     "Report/images/S541_1_1.png": {
       "checksum": "8be8a36000fa041cee9c17dd8cbcaa35"
     },
@@ -21,10 +108,10 @@
       "checksum": "7aa49c44f9a31a238c1e86641b6e165a"
     },
     "Report/project-1-final.html": {
-      "checksum": "d2a0bf6a7d71f05bbbba54d38b255f9a"
+      "checksum": "c78b0d45de4d6baf864593885de8389d"
     },
     "Report/project-1-final.qmd": {
-      "checksum": "1eaa2ed0d9e4495ea54a69dec6b15cf0"
+      "checksum": "91417330f40e11c68669b705b6669be2"
     },
     "Report/project-1.html": {
       "checksum": "f98acd8c894cb031c4192eac9171faa7"
