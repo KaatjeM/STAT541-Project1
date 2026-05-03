@@ -9,6 +9,9 @@ code-fold: true
 warning: false
 embed-resources: true
 editor: source
+dependencies:
+  - rmarkdown
+  - knitr
 ---
 
 ## Context
