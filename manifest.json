@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "locale": "en_US",
+  "platform": "4.5.3",
+  "metadata": {
+    "appmode": "static",
+    "primary_rmd": null,
+    "primary_html": "Franchesca/Franchesca.html",
+    "content_category": null,
+    "has_parameters": false
+  },
+  "packages": null,
+  "files": {
+    "Data/democracy.csv": {
+      "checksum": "6c6aa8c3db7476e345dbaa80f9a96a24"
+    },
+    "Report/images/S541_1_1.png": {
+      "checksum": "8be8a36000fa041cee9c17dd8cbcaa35"
+    },
+    "Report/images/S541_1_1_b.png": {
+      "checksum": "7aa49c44f9a31a238c1e86641b6e165a"
+    },
+    "Report/project-1-final.html": {
+      "checksum": "d2a0bf6a7d71f05bbbba54d38b255f9a"
+    },
+    "Report/project-1-final.qmd": {
+      "checksum": "1eaa2ed0d9e4495ea54a69dec6b15cf0"
+    },
+    "Report/project-1.html": {
+      "checksum": "f98acd8c894cb031c4192eac9171faa7"
+    },
+    "Report/project-1.qmd": {
+      "checksum": "f9f8fb030eead4e36d826f809fc3b1ad"
+    }
+  },
+  "users": null
+}
