@@ -5,11 +5,22 @@
   "metadata": {
     "appmode": "static",
     "primary_rmd": null,
-    "primary_html": "Franchesca/Franchesca.html",
+    "primary_html": "Report/project-1.html",
     "content_category": null,
     "has_parameters": false
   },
-  "packages": null,
+  "packages": [
+    {
+      "package": "knitr",
+      "version": "1.45",
+      "source": "CRAN"
+    },
+    {
+      "package": "rmarkdown",
+      "version": "2.25",
+      "source": "CRAN"
+    }
+  ],
   "files": {
     "Data/democracy.csv": {
       "checksum": "6c6aa8c3db7476e345dbaa80f9a96a24"
