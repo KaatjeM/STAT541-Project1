@@ -9,9 +9,6 @@ code-fold: true
 warning: false
 embed-resources: true
 editor: source
-dependencies:
-  - rmarkdown
-  - knitr
 ---
 
 ## Context
@@ -218,7 +215,6 @@ people <- people |>
 #| output: false
 
 # packages here
-install.packages(c("knitr", "rmarkdown"))
 library(tidyverse)
 library(gt)
 library(countrycode)
