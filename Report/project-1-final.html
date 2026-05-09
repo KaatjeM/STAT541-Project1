@@ -8,7 +8,7 @@
 
 <meta name="author" content="Franchesca Garcia, Jett Palmer, Kaatje Matthews-vanKoetsveld">
 
-<title>Democracy: Will It Prevail?</title>
+<title>Global Government: Will Democracy Prevail?</title>
 <style>
 
 code{white-space: pre-wrap;}
@@ -2228,7 +2228,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Democracy: Will It Prevail?</h1>
+<h1 class="title">Global Government: Will Democracy Prevail?</h1>
 </div>
 
 
@@ -2253,7 +2253,7 @@ vertical-align: -.125em;
 
 <section id="context" class="level2">
 <h2 class="anchored" data-anchor-id="context">Context</h2>
-<p>This report lifts the curtain on some of the social and welfare markers that are associated with democratic and non-democratic regimes. And when a country overthrows democracy, how long does the new regime last? What contributes to its downfall? We’ll start by exploring our three, key datasets.</p>
+<p>This report lifts the curtain on some of the social and welfare markers that are associated with democratic and non-democratic regimes. When a country overthrows democracy, how long does the new regime last? What contributes to its downfall? We’ll start by exploring our three, key datasets for this report.</p>
 <section id="democracy-and-dictatorship" class="level3">
 <h3 class="anchored" data-anchor-id="democracy-and-dictatorship">Democracy and Dictatorship</h3>
 <p>The Democracy and Dictatorship (DD) data were released as part of TidyTuesday on November 5, 2024. TidyTuesday is a weekly project that shares open datasets for users to practice data analysis. This version updates the dataset from Bjørnskov and Rode (2020), building on earlier work by Cheibub et al. (<a href="https://doi.org/10.1007/s11127-009-9491-2">2010</a>) and Alvarez et al. (1996). The dataset was later cleaned and shared on GitHub by Jon Harmon. Bjørnskov and Rode expanded existing data on political regimes by adding more countries, institutional detail, and a clear indicator for both successful and failed coups. They defined coups using three criteria: the goal must be to overthrow the executive, the actors must be connected to the state, and the event must last no longer than a week. This provides a consistent way to identify and compare regime changes. The data include the regime types of countries around the world between the years 1950 and 2020. Each observation (row) represents a country and year. The dataset focuses primarily on whether a country is democratic or not. Using this structure, we can study how often countries move away from democracy and how long those periods last which we call “spells.” Building on this, our analysis applies unique visualization techniques and survival analysis methods to examine the duration and hazard of non-democratic spells.</p>
@@ -2443,6 +2443,7 @@ vertical-align: -.125em;
 <span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
+<p>We’ll explore the following research questions throughout this report.</p>
 </section>
 <section id="research-questions" class="level3">
 <h3 class="anchored" data-anchor-id="research-questions">Research Questions</h3>
@@ -2489,7 +2490,7 @@ vertical-align: -.125em;
 </section>
 <section id="exploring-non-democratic-spells" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-non-democratic-spells">Exploring Non-Democratic Spells</h2>
-<p>We start by taking a pulse on the modern-day presence and absence of democracy around the world. Figure 1 shows countries’ regime types in 2020, with democratic countries in blue and non-democratic countries in red. Non-democratic regimes are more concentrated in regions such as Africa, the Middle East, and Southeast Asia.</p>
+<p>Let’s start by taking a pulse on the modern-day presence and absence of democracy around the world. Figure 1 shows countries’ regime types in 2020, with democratic countries in blue and non-democratic countries in red. Non-democratic regimes are more concentrated in regions such as Africa, the Middle East, and Southeast Asia.</p>
 <section id="world-map-of-democracy" class="level4">
 <h4 class="anchored" data-anchor-id="world-map-of-democracy">World Map of Democracy</h4>
 <div class="cell">
@@ -2519,7 +2520,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<p>A Sankey plot can help us visualize regime-change patterns on the global scale. We see that most transitions into democratic regimes originate from military or civilian dictatorships.</p>
+<p>A Sankey plot can help us visualize regime-change patterns on the global scale. We see that most transitions into democratic regimes originate from military or civilian dictatorships. There’s also substantial movement between civilian dictatorships and military dictatorships.</p>
 </section>
 <section id="flow-of-change-in-regime-types" class="level4">
 <h4 class="anchored" data-anchor-id="flow-of-change-in-regime-types">Flow of Change in Regime Types</h4>
@@ -2614,7 +2615,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<p>Now, we cut across decades of political history to identify the countries with the greatest proportion of dictator-led regimes and the greatest number of regime changes. Table 1 summarizes the number of regime types by country and the percentage classified as dictatorships over the 1950-2020 period, noting that data may be incomplete for some countries. Countries with a larger number of regimes show extreme variation in dictatorship prevalence, ranging from 0% to 100%.</p>
+<p>Cutting across decades of political history, we can identify the countries with the greatest proportion of dictator-led regimes and the greatest number of regime changes. Table 1 summarizes the number of regime types by country and the percentage classified as dictatorships over the 1950-2020 period, noting that data may be incomplete for some countries. Countries with a larger number of regimes show extreme variation in dictatorship prevalence, ranging from 0% to 100%.</p>
 </section>
 <section id="percent-of-dictatorships-regimes-by-country" class="level4">
 <h4 class="anchored" data-anchor-id="percent-of-dictatorships-regimes-by-country">Percent of Dictatorships Regimes by Country</h4>
@@ -2675,20 +2676,20 @@ vertical-align: -.125em;
 </details>
 <div class="cell-output-display">
 <div style="max-height: 400px; overflow-y: auto;">
-<div id="eexcxadyid" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#eexcxadyid table {
+<div id="qrqscxevqj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qrqscxevqj table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#eexcxadyid thead, #eexcxadyid tbody, #eexcxadyid tfoot, #eexcxadyid tr, #eexcxadyid td, #eexcxadyid th {
+#qrqscxevqj thead, #qrqscxevqj tbody, #qrqscxevqj tfoot, #qrqscxevqj tr, #qrqscxevqj td, #qrqscxevqj th {
 border-style: none;
 }
-#eexcxadyid p {
+#qrqscxevqj p {
 margin: 0;
 padding: 0;
 }
-#eexcxadyid .gt_table {
+#qrqscxevqj .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -2713,11 +2714,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#eexcxadyid .gt_caption {
+#qrqscxevqj .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#eexcxadyid .gt_title {
+#qrqscxevqj .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -2728,7 +2729,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#eexcxadyid .gt_subtitle {
+#qrqscxevqj .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -2739,7 +2740,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#eexcxadyid .gt_heading {
+#qrqscxevqj .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -2750,12 +2751,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#eexcxadyid .gt_bottom_border {
+#qrqscxevqj .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#eexcxadyid .gt_col_headings {
+#qrqscxevqj .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2769,7 +2770,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#eexcxadyid .gt_col_heading {
+#qrqscxevqj .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2788,7 +2789,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#eexcxadyid .gt_column_spanner_outer {
+#qrqscxevqj .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2799,13 +2800,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#eexcxadyid .gt_column_spanner_outer:first-child {
+#qrqscxevqj .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#eexcxadyid .gt_column_spanner_outer:last-child {
+#qrqscxevqj .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#eexcxadyid .gt_column_spanner {
+#qrqscxevqj .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -2816,10 +2817,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#eexcxadyid .gt_spanner_row {
+#qrqscxevqj .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#eexcxadyid .gt_group_heading {
+#qrqscxevqj .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2844,7 +2845,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#eexcxadyid .gt_empty_group_heading {
+#qrqscxevqj .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -2858,13 +2859,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#eexcxadyid .gt_from_md > :first-child {
+#qrqscxevqj .gt_from_md > :first-child {
 margin-top: 0;
 }
-#eexcxadyid .gt_from_md > :last-child {
+#qrqscxevqj .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#eexcxadyid .gt_row {
+#qrqscxevqj .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2882,7 +2883,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#eexcxadyid .gt_stub {
+#qrqscxevqj .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2894,7 +2895,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#eexcxadyid .gt_stub_row_group {
+#qrqscxevqj .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2907,13 +2908,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#eexcxadyid .gt_row_group_first td {
+#qrqscxevqj .gt_row_group_first td {
 border-top-width: 2px;
 }
-#eexcxadyid .gt_row_group_first th {
+#qrqscxevqj .gt_row_group_first th {
 border-top-width: 2px;
 }
-#eexcxadyid .gt_summary_row {
+#qrqscxevqj .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2922,14 +2923,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#eexcxadyid .gt_first_summary_row {
+#qrqscxevqj .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#eexcxadyid .gt_first_summary_row.thick {
+#qrqscxevqj .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#eexcxadyid .gt_last_summary_row {
+#qrqscxevqj .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2938,7 +2939,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#eexcxadyid .gt_grand_summary_row {
+#qrqscxevqj .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2947,7 +2948,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#eexcxadyid .gt_first_grand_summary_row {
+#qrqscxevqj .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2956,7 +2957,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#eexcxadyid .gt_last_grand_summary_row_top {
+#qrqscxevqj .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2965,10 +2966,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#eexcxadyid .gt_striped {
+#qrqscxevqj .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#eexcxadyid .gt_table_body {
+#qrqscxevqj .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2976,7 +2977,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#eexcxadyid .gt_footnotes {
+#qrqscxevqj .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2989,7 +2990,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#eexcxadyid .gt_footnote {
+#qrqscxevqj .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -2997,7 +2998,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#eexcxadyid .gt_sourcenotes {
+#qrqscxevqj .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3010,64 +3011,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#eexcxadyid .gt_sourcenote {
+#qrqscxevqj .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#eexcxadyid .gt_left {
+#qrqscxevqj .gt_left {
 text-align: left;
 }
-#eexcxadyid .gt_center {
+#qrqscxevqj .gt_center {
 text-align: center;
 }
-#eexcxadyid .gt_right {
+#qrqscxevqj .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#eexcxadyid .gt_font_normal {
+#qrqscxevqj .gt_font_normal {
 font-weight: normal;
 }
-#eexcxadyid .gt_font_bold {
+#qrqscxevqj .gt_font_bold {
 font-weight: bold;
 }
-#eexcxadyid .gt_font_italic {
+#qrqscxevqj .gt_font_italic {
 font-style: italic;
 }
-#eexcxadyid .gt_super {
+#qrqscxevqj .gt_super {
 font-size: 65%;
 }
-#eexcxadyid .gt_footnote_marks {
+#qrqscxevqj .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#eexcxadyid .gt_asterisk {
+#qrqscxevqj .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#eexcxadyid .gt_indent_1 {
+#qrqscxevqj .gt_indent_1 {
 text-indent: 5px;
 }
-#eexcxadyid .gt_indent_2 {
+#qrqscxevqj .gt_indent_2 {
 text-indent: 10px;
 }
-#eexcxadyid .gt_indent_3 {
+#qrqscxevqj .gt_indent_3 {
 text-indent: 15px;
 }
-#eexcxadyid .gt_indent_4 {
+#qrqscxevqj .gt_indent_4 {
 text-indent: 20px;
 }
-#eexcxadyid .gt_indent_5 {
+#qrqscxevqj .gt_indent_5 {
 text-indent: 25px;
 }
-#eexcxadyid .katex-display {
+#qrqscxevqj .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#eexcxadyid div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#qrqscxevqj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -4129,7 +4130,7 @@ height: 0px !important;
 </div>
 </div>
 </div>
-<p>Table 2 summarizes the percentage of country-year observations classified under each form of governance. Note that these categories are not mutually exclusive as a country can fall into multiple forms at once (e.g., a country can be both democratic and presidential). Democracy is most prevalent in North and Latin America. Communism makes up over 32% of European and Central Asian regimes.</p>
+<p><br> Table 2 summarizes the percentage of country-year observations classified under each form of governance. Note that these categories are not mutually exclusive, as a country can fall into multiple forms at once (e.g., a country can be both democratic and presidential). Democracy is most prevalent in North and Latin America. Communism constitutes over 32% of European and Central Asian regimes.</p>
 </section>
 <section id="governance-types-by-world-region" class="level4">
 <h4 class="anchored" data-anchor-id="governance-types-by-world-region">Governance Types by World Region</h4>
@@ -4183,20 +4184,20 @@ height: 0px !important;
 <span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>             <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="olydkcqezr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#olydkcqezr table {
+<div id="wsggkukvnj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wsggkukvnj table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#olydkcqezr thead, #olydkcqezr tbody, #olydkcqezr tfoot, #olydkcqezr tr, #olydkcqezr td, #olydkcqezr th {
+#wsggkukvnj thead, #wsggkukvnj tbody, #wsggkukvnj tfoot, #wsggkukvnj tr, #wsggkukvnj td, #wsggkukvnj th {
 border-style: none;
 }
-#olydkcqezr p {
+#wsggkukvnj p {
 margin: 0;
 padding: 0;
 }
-#olydkcqezr .gt_table {
+#wsggkukvnj .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -4221,11 +4222,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#olydkcqezr .gt_caption {
+#wsggkukvnj .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#olydkcqezr .gt_title {
+#wsggkukvnj .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -4236,7 +4237,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#olydkcqezr .gt_subtitle {
+#wsggkukvnj .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -4247,7 +4248,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#olydkcqezr .gt_heading {
+#wsggkukvnj .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -4258,12 +4259,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#olydkcqezr .gt_bottom_border {
+#wsggkukvnj .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#olydkcqezr .gt_col_headings {
+#wsggkukvnj .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4277,7 +4278,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#olydkcqezr .gt_col_heading {
+#wsggkukvnj .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4296,7 +4297,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#olydkcqezr .gt_column_spanner_outer {
+#wsggkukvnj .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4307,13 +4308,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#olydkcqezr .gt_column_spanner_outer:first-child {
+#wsggkukvnj .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#olydkcqezr .gt_column_spanner_outer:last-child {
+#wsggkukvnj .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#olydkcqezr .gt_column_spanner {
+#wsggkukvnj .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -4324,10 +4325,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#olydkcqezr .gt_spanner_row {
+#wsggkukvnj .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#olydkcqezr .gt_group_heading {
+#wsggkukvnj .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4352,7 +4353,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#olydkcqezr .gt_empty_group_heading {
+#wsggkukvnj .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -4366,13 +4367,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#olydkcqezr .gt_from_md > :first-child {
+#wsggkukvnj .gt_from_md > :first-child {
 margin-top: 0;
 }
-#olydkcqezr .gt_from_md > :last-child {
+#wsggkukvnj .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#olydkcqezr .gt_row {
+#wsggkukvnj .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4390,7 +4391,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#olydkcqezr .gt_stub {
+#wsggkukvnj .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4402,7 +4403,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#olydkcqezr .gt_stub_row_group {
+#wsggkukvnj .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4415,13 +4416,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#olydkcqezr .gt_row_group_first td {
+#wsggkukvnj .gt_row_group_first td {
 border-top-width: 2px;
 }
-#olydkcqezr .gt_row_group_first th {
+#wsggkukvnj .gt_row_group_first th {
 border-top-width: 2px;
 }
-#olydkcqezr .gt_summary_row {
+#wsggkukvnj .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4430,14 +4431,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#olydkcqezr .gt_first_summary_row {
+#wsggkukvnj .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#olydkcqezr .gt_first_summary_row.thick {
+#wsggkukvnj .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#olydkcqezr .gt_last_summary_row {
+#wsggkukvnj .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4446,7 +4447,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#olydkcqezr .gt_grand_summary_row {
+#wsggkukvnj .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4455,7 +4456,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#olydkcqezr .gt_first_grand_summary_row {
+#wsggkukvnj .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4464,7 +4465,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#olydkcqezr .gt_last_grand_summary_row_top {
+#wsggkukvnj .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4473,10 +4474,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#olydkcqezr .gt_striped {
+#wsggkukvnj .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#olydkcqezr .gt_table_body {
+#wsggkukvnj .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4484,7 +4485,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#olydkcqezr .gt_footnotes {
+#wsggkukvnj .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4497,7 +4498,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#olydkcqezr .gt_footnote {
+#wsggkukvnj .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -4505,7 +4506,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#olydkcqezr .gt_sourcenotes {
+#wsggkukvnj .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4518,64 +4519,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#olydkcqezr .gt_sourcenote {
+#wsggkukvnj .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#olydkcqezr .gt_left {
+#wsggkukvnj .gt_left {
 text-align: left;
 }
-#olydkcqezr .gt_center {
+#wsggkukvnj .gt_center {
 text-align: center;
 }
-#olydkcqezr .gt_right {
+#wsggkukvnj .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#olydkcqezr .gt_font_normal {
+#wsggkukvnj .gt_font_normal {
 font-weight: normal;
 }
-#olydkcqezr .gt_font_bold {
+#wsggkukvnj .gt_font_bold {
 font-weight: bold;
 }
-#olydkcqezr .gt_font_italic {
+#wsggkukvnj .gt_font_italic {
 font-style: italic;
 }
-#olydkcqezr .gt_super {
+#wsggkukvnj .gt_super {
 font-size: 65%;
 }
-#olydkcqezr .gt_footnote_marks {
+#wsggkukvnj .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#olydkcqezr .gt_asterisk {
+#wsggkukvnj .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#olydkcqezr .gt_indent_1 {
+#wsggkukvnj .gt_indent_1 {
 text-indent: 5px;
 }
-#olydkcqezr .gt_indent_2 {
+#wsggkukvnj .gt_indent_2 {
 text-indent: 10px;
 }
-#olydkcqezr .gt_indent_3 {
+#wsggkukvnj .gt_indent_3 {
 text-indent: 15px;
 }
-#olydkcqezr .gt_indent_4 {
+#wsggkukvnj .gt_indent_4 {
 text-indent: 20px;
 }
-#olydkcqezr .gt_indent_5 {
+#wsggkukvnj .gt_indent_5 {
 text-indent: 25px;
 }
-#olydkcqezr .katex-display {
+#wsggkukvnj .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#olydkcqezr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wsggkukvnj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -4686,7 +4687,7 @@ Governance Type (%)
 </div>
 </div>
 </div>
-<p>A statistical model for the time until a country that lost democracy returns to democracy can help us investigate the region and regime characteristics more formally.</p>
+<p>A statistical model for the time until a country that lost democracy returns to democracy (i.e., a democratic spell) can help us investigate these regional and regime characteristics more formally.</p>
 </section>
 <section id="modeling" class="level3">
 <h3 class="anchored" data-anchor-id="modeling">Modeling</h3>
@@ -4767,20 +4768,20 @@ Governance Type (%)
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_caption</span>(<span class="at">caption =</span> <span class="fu">md</span>(<span class="st">&quot;Cox Proportional Hazards Model Coefficent Estimates&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="rkdiuriswc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rkdiuriswc table {
+<div id="kwcmkxxrqw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kwcmkxxrqw table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#rkdiuriswc thead, #rkdiuriswc tbody, #rkdiuriswc tfoot, #rkdiuriswc tr, #rkdiuriswc td, #rkdiuriswc th {
+#kwcmkxxrqw thead, #kwcmkxxrqw tbody, #kwcmkxxrqw tfoot, #kwcmkxxrqw tr, #kwcmkxxrqw td, #kwcmkxxrqw th {
 border-style: none;
 }
-#rkdiuriswc p {
+#kwcmkxxrqw p {
 margin: 0;
 padding: 0;
 }
-#rkdiuriswc .gt_table {
+#kwcmkxxrqw .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -4805,11 +4806,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#rkdiuriswc .gt_caption {
+#kwcmkxxrqw .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#rkdiuriswc .gt_title {
+#kwcmkxxrqw .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -4820,7 +4821,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#rkdiuriswc .gt_subtitle {
+#kwcmkxxrqw .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -4831,7 +4832,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#rkdiuriswc .gt_heading {
+#kwcmkxxrqw .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -4842,12 +4843,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#rkdiuriswc .gt_bottom_border {
+#kwcmkxxrqw .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#rkdiuriswc .gt_col_headings {
+#kwcmkxxrqw .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4861,7 +4862,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#rkdiuriswc .gt_col_heading {
+#kwcmkxxrqw .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4880,7 +4881,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#rkdiuriswc .gt_column_spanner_outer {
+#kwcmkxxrqw .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4891,13 +4892,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#rkdiuriswc .gt_column_spanner_outer:first-child {
+#kwcmkxxrqw .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#rkdiuriswc .gt_column_spanner_outer:last-child {
+#kwcmkxxrqw .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#rkdiuriswc .gt_column_spanner {
+#kwcmkxxrqw .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -4908,10 +4909,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#rkdiuriswc .gt_spanner_row {
+#kwcmkxxrqw .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#rkdiuriswc .gt_group_heading {
+#kwcmkxxrqw .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4936,7 +4937,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#rkdiuriswc .gt_empty_group_heading {
+#kwcmkxxrqw .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -4950,13 +4951,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#rkdiuriswc .gt_from_md > :first-child {
+#kwcmkxxrqw .gt_from_md > :first-child {
 margin-top: 0;
 }
-#rkdiuriswc .gt_from_md > :last-child {
+#kwcmkxxrqw .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#rkdiuriswc .gt_row {
+#kwcmkxxrqw .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4974,7 +4975,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#rkdiuriswc .gt_stub {
+#kwcmkxxrqw .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4986,7 +4987,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#rkdiuriswc .gt_stub_row_group {
+#kwcmkxxrqw .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4999,13 +5000,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#rkdiuriswc .gt_row_group_first td {
+#kwcmkxxrqw .gt_row_group_first td {
 border-top-width: 2px;
 }
-#rkdiuriswc .gt_row_group_first th {
+#kwcmkxxrqw .gt_row_group_first th {
 border-top-width: 2px;
 }
-#rkdiuriswc .gt_summary_row {
+#kwcmkxxrqw .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5014,14 +5015,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#rkdiuriswc .gt_first_summary_row {
+#kwcmkxxrqw .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#rkdiuriswc .gt_first_summary_row.thick {
+#kwcmkxxrqw .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#rkdiuriswc .gt_last_summary_row {
+#kwcmkxxrqw .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5030,7 +5031,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#rkdiuriswc .gt_grand_summary_row {
+#kwcmkxxrqw .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5039,7 +5040,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#rkdiuriswc .gt_first_grand_summary_row {
+#kwcmkxxrqw .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5048,7 +5049,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#rkdiuriswc .gt_last_grand_summary_row_top {
+#kwcmkxxrqw .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5057,10 +5058,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#rkdiuriswc .gt_striped {
+#kwcmkxxrqw .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#rkdiuriswc .gt_table_body {
+#kwcmkxxrqw .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5068,7 +5069,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#rkdiuriswc .gt_footnotes {
+#kwcmkxxrqw .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5081,7 +5082,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#rkdiuriswc .gt_footnote {
+#kwcmkxxrqw .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -5089,7 +5090,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#rkdiuriswc .gt_sourcenotes {
+#kwcmkxxrqw .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5102,64 +5103,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#rkdiuriswc .gt_sourcenote {
+#kwcmkxxrqw .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#rkdiuriswc .gt_left {
+#kwcmkxxrqw .gt_left {
 text-align: left;
 }
-#rkdiuriswc .gt_center {
+#kwcmkxxrqw .gt_center {
 text-align: center;
 }
-#rkdiuriswc .gt_right {
+#kwcmkxxrqw .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#rkdiuriswc .gt_font_normal {
+#kwcmkxxrqw .gt_font_normal {
 font-weight: normal;
 }
-#rkdiuriswc .gt_font_bold {
+#kwcmkxxrqw .gt_font_bold {
 font-weight: bold;
 }
-#rkdiuriswc .gt_font_italic {
+#kwcmkxxrqw .gt_font_italic {
 font-style: italic;
 }
-#rkdiuriswc .gt_super {
+#kwcmkxxrqw .gt_super {
 font-size: 65%;
 }
-#rkdiuriswc .gt_footnote_marks {
+#kwcmkxxrqw .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#rkdiuriswc .gt_asterisk {
+#kwcmkxxrqw .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#rkdiuriswc .gt_indent_1 {
+#kwcmkxxrqw .gt_indent_1 {
 text-indent: 5px;
 }
-#rkdiuriswc .gt_indent_2 {
+#kwcmkxxrqw .gt_indent_2 {
 text-indent: 10px;
 }
-#rkdiuriswc .gt_indent_3 {
+#kwcmkxxrqw .gt_indent_3 {
 text-indent: 15px;
 }
-#rkdiuriswc .gt_indent_4 {
+#kwcmkxxrqw .gt_indent_4 {
 text-indent: 20px;
 }
-#rkdiuriswc .gt_indent_5 {
+#kwcmkxxrqw .gt_indent_5 {
 text-indent: 25px;
 }
-#rkdiuriswc .katex-display {
+#kwcmkxxrqw .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#rkdiuriswc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#kwcmkxxrqw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -5301,7 +5302,7 @@ height: 0px !important;
 </section>
 <section id="relationships-with-global-welfare" class="level2">
 <h2 class="anchored" data-anchor-id="relationships-with-global-welfare">Relationships with Global Welfare</h2>
-<p>Again, we start by taking a pulse on the status of global population. Figure 3 shows the distribution of population across countries, with darker shades of blue indicating larger populations. Population is heavily concentrated in a few countries, notably China and India, while much of Africa, South America, and Oceania has relatively lower population densities by comparison.</p>
+<p>Again, let’s start by taking a pulse on the status of global population. Figure 3 shows the distribution of population across countries, with darker shades of blue indicating larger populations. Population is heavily concentrated in a few countries, notably China and India, while much of Africa, South America, and Oceania has relatively lower population densities by comparison.</p>
 <section id="world-map-of-population" class="level4">
 <h4 class="anchored" data-anchor-id="world-map-of-population">World Map of Population</h4>
 <div class="cell">
@@ -5335,7 +5336,7 @@ height: 0px !important;
 </div>
 </div>
 </div>
-<p>Another country-level characteristic that may be related with political regimes is life expectancy. Figure 4 shows that life expectancy generally increases over time across all regime types. More democratic regimes tend to have higher average life expectancy compared to less democratic ones across all time.</p>
+<p>Another country-level characteristic that we think may be related with political regimes is life expectancy. Figure 4 shows that life expectancy generally increases over time across all regime types. More democratic regimes tend to have higher average life expectancy compared to less democratic ones across all time.</p>
 </section>
 <section id="life-expectancy-by-regime-type" class="level4">
 <h4 class="anchored" data-anchor-id="life-expectancy-by-regime-type">Life Expectancy by Regime Type</h4>
@@ -5416,7 +5417,7 @@ height: 0px !important;
 <li><p>Military dictatorships</p></li>
 <li><p>Presidential democracies</p></li>
 </ul>
-<p>Let’s compare these regimes by their implementation of democratic principles, like suffrage or fair elections. Table 3 shows the percentage of country-year observations that exhibit five different democratic principles. Parliamentary and presidential democracies have high percentages across all principles. In contrast, civilian and military dictatorships rarely meet this criteria, with the exception of full voting rights, which appears relatively more common.</p>
+<p>Let’s compare these regimes by their implementation of democratic principles, like suffrage and fair elections. Table 3 shows the percentage of country-year observations that exhibit five different democratic principles. Parliamentary and presidential democracies have high percentages across all principles. In contrast, civilian and military dictatorships rarely meet this criteria, with the exception of full voting rights, which appears relatively more common.</p>
 </section>
 <section id="democratic-principles-for-top-regimes" class="level4">
 <h4 class="anchored" data-anchor-id="democratic-principles-for-top-regimes">Democratic Principles for Top Regimes</h4>
@@ -5475,20 +5476,20 @@ height: 0px !important;
 <span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize_regimes</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="qkyopapohl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qkyopapohl table {
+<div id="ckxvlpmzfo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ckxvlpmzfo table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#qkyopapohl thead, #qkyopapohl tbody, #qkyopapohl tfoot, #qkyopapohl tr, #qkyopapohl td, #qkyopapohl th {
+#ckxvlpmzfo thead, #ckxvlpmzfo tbody, #ckxvlpmzfo tfoot, #ckxvlpmzfo tr, #ckxvlpmzfo td, #ckxvlpmzfo th {
 border-style: none;
 }
-#qkyopapohl p {
+#ckxvlpmzfo p {
 margin: 0;
 padding: 0;
 }
-#qkyopapohl .gt_table {
+#ckxvlpmzfo .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -5513,11 +5514,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#qkyopapohl .gt_caption {
+#ckxvlpmzfo .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#qkyopapohl .gt_title {
+#ckxvlpmzfo .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -5528,7 +5529,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#qkyopapohl .gt_subtitle {
+#ckxvlpmzfo .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -5539,7 +5540,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#qkyopapohl .gt_heading {
+#ckxvlpmzfo .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -5550,12 +5551,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#qkyopapohl .gt_bottom_border {
+#ckxvlpmzfo .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#qkyopapohl .gt_col_headings {
+#ckxvlpmzfo .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5569,7 +5570,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#qkyopapohl .gt_col_heading {
+#ckxvlpmzfo .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5588,7 +5589,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#qkyopapohl .gt_column_spanner_outer {
+#ckxvlpmzfo .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5599,13 +5600,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#qkyopapohl .gt_column_spanner_outer:first-child {
+#ckxvlpmzfo .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#qkyopapohl .gt_column_spanner_outer:last-child {
+#ckxvlpmzfo .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#qkyopapohl .gt_column_spanner {
+#ckxvlpmzfo .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -5616,10 +5617,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#qkyopapohl .gt_spanner_row {
+#ckxvlpmzfo .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#qkyopapohl .gt_group_heading {
+#ckxvlpmzfo .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5644,7 +5645,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#qkyopapohl .gt_empty_group_heading {
+#ckxvlpmzfo .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -5658,13 +5659,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#qkyopapohl .gt_from_md > :first-child {
+#ckxvlpmzfo .gt_from_md > :first-child {
 margin-top: 0;
 }
-#qkyopapohl .gt_from_md > :last-child {
+#ckxvlpmzfo .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#qkyopapohl .gt_row {
+#ckxvlpmzfo .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5682,7 +5683,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#qkyopapohl .gt_stub {
+#ckxvlpmzfo .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5694,7 +5695,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#qkyopapohl .gt_stub_row_group {
+#ckxvlpmzfo .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5707,13 +5708,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#qkyopapohl .gt_row_group_first td {
+#ckxvlpmzfo .gt_row_group_first td {
 border-top-width: 2px;
 }
-#qkyopapohl .gt_row_group_first th {
+#ckxvlpmzfo .gt_row_group_first th {
 border-top-width: 2px;
 }
-#qkyopapohl .gt_summary_row {
+#ckxvlpmzfo .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5722,14 +5723,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#qkyopapohl .gt_first_summary_row {
+#ckxvlpmzfo .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#qkyopapohl .gt_first_summary_row.thick {
+#ckxvlpmzfo .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#qkyopapohl .gt_last_summary_row {
+#ckxvlpmzfo .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5738,7 +5739,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#qkyopapohl .gt_grand_summary_row {
+#ckxvlpmzfo .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5747,7 +5748,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#qkyopapohl .gt_first_grand_summary_row {
+#ckxvlpmzfo .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5756,7 +5757,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#qkyopapohl .gt_last_grand_summary_row_top {
+#ckxvlpmzfo .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5765,10 +5766,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#qkyopapohl .gt_striped {
+#ckxvlpmzfo .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#qkyopapohl .gt_table_body {
+#ckxvlpmzfo .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5776,7 +5777,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#qkyopapohl .gt_footnotes {
+#ckxvlpmzfo .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5789,7 +5790,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#qkyopapohl .gt_footnote {
+#ckxvlpmzfo .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -5797,7 +5798,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#qkyopapohl .gt_sourcenotes {
+#ckxvlpmzfo .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5810,64 +5811,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#qkyopapohl .gt_sourcenote {
+#ckxvlpmzfo .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#qkyopapohl .gt_left {
+#ckxvlpmzfo .gt_left {
 text-align: left;
 }
-#qkyopapohl .gt_center {
+#ckxvlpmzfo .gt_center {
 text-align: center;
 }
-#qkyopapohl .gt_right {
+#ckxvlpmzfo .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#qkyopapohl .gt_font_normal {
+#ckxvlpmzfo .gt_font_normal {
 font-weight: normal;
 }
-#qkyopapohl .gt_font_bold {
+#ckxvlpmzfo .gt_font_bold {
 font-weight: bold;
 }
-#qkyopapohl .gt_font_italic {
+#ckxvlpmzfo .gt_font_italic {
 font-style: italic;
 }
-#qkyopapohl .gt_super {
+#ckxvlpmzfo .gt_super {
 font-size: 65%;
 }
-#qkyopapohl .gt_footnote_marks {
+#ckxvlpmzfo .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#qkyopapohl .gt_asterisk {
+#ckxvlpmzfo .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#qkyopapohl .gt_indent_1 {
+#ckxvlpmzfo .gt_indent_1 {
 text-indent: 5px;
 }
-#qkyopapohl .gt_indent_2 {
+#ckxvlpmzfo .gt_indent_2 {
 text-indent: 10px;
 }
-#qkyopapohl .gt_indent_3 {
+#ckxvlpmzfo .gt_indent_3 {
 text-indent: 15px;
 }
-#qkyopapohl .gt_indent_4 {
+#ckxvlpmzfo .gt_indent_4 {
 text-indent: 20px;
 }
-#qkyopapohl .gt_indent_5 {
+#ckxvlpmzfo .gt_indent_5 {
 text-indent: 25px;
 }
-#qkyopapohl .katex-display {
+#ckxvlpmzfo .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#qkyopapohl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ckxvlpmzfo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -5942,7 +5943,7 @@ Democratic Principles Represented (% Observations)
 </div>
 </div>
 </div>
-<p>Finally, we may be interested in comparing people’s perceived happiness and life satisfaction around the world. Table 4 shows that military and civilian dictatorships tend to have lower reported happiness, whereas parliamentary democracies and royal dictatorships tend to have higher reported happiness.</p>
+<p>We’re also interested in comparing citizens’ perceived happiness and life satisfaction around the world. Table 4 shows that military and civilian dictatorships tend to have lower reported happiness, whereas parliamentary democracies and royal dictatorships tend to have higher reported happiness.</p>
 </section>
 <section id="happiness-by-regime-type" class="level4">
 <h4 class="anchored" data-anchor-id="happiness-by-regime-type">Happiness by Regime Type</h4>
@@ -5988,20 +5989,20 @@ Democratic Principles Represented (% Observations)
 <span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>             <span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="kubqavbcgu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kubqavbcgu table {
+<div id="sonfzppdzi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sonfzppdzi table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#kubqavbcgu thead, #kubqavbcgu tbody, #kubqavbcgu tfoot, #kubqavbcgu tr, #kubqavbcgu td, #kubqavbcgu th {
+#sonfzppdzi thead, #sonfzppdzi tbody, #sonfzppdzi tfoot, #sonfzppdzi tr, #sonfzppdzi td, #sonfzppdzi th {
 border-style: none;
 }
-#kubqavbcgu p {
+#sonfzppdzi p {
 margin: 0;
 padding: 0;
 }
-#kubqavbcgu .gt_table {
+#sonfzppdzi .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -6026,11 +6027,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#kubqavbcgu .gt_caption {
+#sonfzppdzi .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#kubqavbcgu .gt_title {
+#sonfzppdzi .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -6041,7 +6042,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#kubqavbcgu .gt_subtitle {
+#sonfzppdzi .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -6052,7 +6053,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#kubqavbcgu .gt_heading {
+#sonfzppdzi .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -6063,12 +6064,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#kubqavbcgu .gt_bottom_border {
+#sonfzppdzi .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#kubqavbcgu .gt_col_headings {
+#sonfzppdzi .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -6082,7 +6083,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#kubqavbcgu .gt_col_heading {
+#sonfzppdzi .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -6101,7 +6102,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#kubqavbcgu .gt_column_spanner_outer {
+#sonfzppdzi .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -6112,13 +6113,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#kubqavbcgu .gt_column_spanner_outer:first-child {
+#sonfzppdzi .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#kubqavbcgu .gt_column_spanner_outer:last-child {
+#sonfzppdzi .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#kubqavbcgu .gt_column_spanner {
+#sonfzppdzi .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -6129,10 +6130,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#kubqavbcgu .gt_spanner_row {
+#sonfzppdzi .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#kubqavbcgu .gt_group_heading {
+#sonfzppdzi .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -6157,7 +6158,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#kubqavbcgu .gt_empty_group_heading {
+#sonfzppdzi .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -6171,13 +6172,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#kubqavbcgu .gt_from_md > :first-child {
+#sonfzppdzi .gt_from_md > :first-child {
 margin-top: 0;
 }
-#kubqavbcgu .gt_from_md > :last-child {
+#sonfzppdzi .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#kubqavbcgu .gt_row {
+#sonfzppdzi .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -6195,7 +6196,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#kubqavbcgu .gt_stub {
+#sonfzppdzi .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -6207,7 +6208,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#kubqavbcgu .gt_stub_row_group {
+#sonfzppdzi .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -6220,13 +6221,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#kubqavbcgu .gt_row_group_first td {
+#sonfzppdzi .gt_row_group_first td {
 border-top-width: 2px;
 }
-#kubqavbcgu .gt_row_group_first th {
+#sonfzppdzi .gt_row_group_first th {
 border-top-width: 2px;
 }
-#kubqavbcgu .gt_summary_row {
+#sonfzppdzi .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -6235,14 +6236,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#kubqavbcgu .gt_first_summary_row {
+#sonfzppdzi .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#kubqavbcgu .gt_first_summary_row.thick {
+#sonfzppdzi .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#kubqavbcgu .gt_last_summary_row {
+#sonfzppdzi .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -6251,7 +6252,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#kubqavbcgu .gt_grand_summary_row {
+#sonfzppdzi .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -6260,7 +6261,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#kubqavbcgu .gt_first_grand_summary_row {
+#sonfzppdzi .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -6269,7 +6270,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#kubqavbcgu .gt_last_grand_summary_row_top {
+#sonfzppdzi .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -6278,10 +6279,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#kubqavbcgu .gt_striped {
+#sonfzppdzi .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#kubqavbcgu .gt_table_body {
+#sonfzppdzi .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -6289,7 +6290,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#kubqavbcgu .gt_footnotes {
+#sonfzppdzi .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -6302,7 +6303,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#kubqavbcgu .gt_footnote {
+#sonfzppdzi .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -6310,7 +6311,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#kubqavbcgu .gt_sourcenotes {
+#sonfzppdzi .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -6323,64 +6324,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#kubqavbcgu .gt_sourcenote {
+#sonfzppdzi .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#kubqavbcgu .gt_left {
+#sonfzppdzi .gt_left {
 text-align: left;
 }
-#kubqavbcgu .gt_center {
+#sonfzppdzi .gt_center {
 text-align: center;
 }
-#kubqavbcgu .gt_right {
+#sonfzppdzi .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#kubqavbcgu .gt_font_normal {
+#sonfzppdzi .gt_font_normal {
 font-weight: normal;
 }
-#kubqavbcgu .gt_font_bold {
+#sonfzppdzi .gt_font_bold {
 font-weight: bold;
 }
-#kubqavbcgu .gt_font_italic {
+#sonfzppdzi .gt_font_italic {
 font-style: italic;
 }
-#kubqavbcgu .gt_super {
+#sonfzppdzi .gt_super {
 font-size: 65%;
 }
-#kubqavbcgu .gt_footnote_marks {
+#sonfzppdzi .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#kubqavbcgu .gt_asterisk {
+#sonfzppdzi .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#kubqavbcgu .gt_indent_1 {
+#sonfzppdzi .gt_indent_1 {
 text-indent: 5px;
 }
-#kubqavbcgu .gt_indent_2 {
+#sonfzppdzi .gt_indent_2 {
 text-indent: 10px;
 }
-#kubqavbcgu .gt_indent_3 {
+#sonfzppdzi .gt_indent_3 {
 text-indent: 15px;
 }
-#kubqavbcgu .gt_indent_4 {
+#sonfzppdzi .gt_indent_4 {
 text-indent: 20px;
 }
-#kubqavbcgu .gt_indent_5 {
+#sonfzppdzi .gt_indent_5 {
 text-indent: 25px;
 }
-#kubqavbcgu .katex-display {
+#sonfzppdzi .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#kubqavbcgu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#sonfzppdzi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -6468,7 +6469,7 @@ height: 0px !important;
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This report explored several significant relationships between political regimes and geographic or welfare variables. While democracy is sometimes lost on countries around the world, it is often recovered. Perhaps, these non-democratic spells tell us something about the kinds of living conditions, rights, and political priorities are most sustainable for a government and their people.</p>
+<p>This report examined several significant relationships among political regime, geographic, and welfare indicators. Although democracies are sometimes overthrown, they are often restored by the people they serve. The analysis of non-democratic spells suggest that region, civil liberties, and political priorities play important roles in the sustainability of a governmental system.</p>
 </section>
 
 </main>
