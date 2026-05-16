@@ -21,8 +21,7 @@ In their paper, Bjørnskov and Rode aimed to fill a gap in existing data on poli
 
 # Data from the package {democracyData}
 # install.packages("pak")
-# pak::pak("xmarquez/democracyData")
-library(democracyData)
+# library(democracyData)
 library(tidyverse)
 
 democracy_data <-
@@ -699,12 +698,31 @@ title(main = "Prob. of Remaing Non-Democratic Decreases Over Time", adj = 0)
 
 ```{r}
 cox_model <- coxph(Surv(time, returned_to_democracy) ~
-                     region + 
-                     is_communist + 
-                     is_multiparty,
+                     region +
+                     is_communist +
+                     is_multiparty +
+                     cluster(country_code),
                    data = survival)
 
 summary(cox_model)
+
+ph_test <- cox.zph(cox_model)
+
+ph_test
+
+cox_model_new <- coxph(
+  Surv(time, returned_to_democracy) ~
+    is_communist +
+    is_multiparty +
+    strata(region) +
+    cluster(country_code),
+  data = survival)
+
+ph_test <- cox.zph(cox_model_new)
+
+ph_test
+
+summary(cox_model_new)
 ```
 
 - n = 255 spells, 178 returns to democracy
